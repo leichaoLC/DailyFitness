@@ -1,0 +1,108 @@
+<% include header.html %>
+    <div class="main">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label big">添加器材</label>
+                <div class="layui-input-inline">
+                    <input v-model="qcdata.qc" style="width:190px" type="text" name="qc" required lay-verify="required" placeholder="请输入器材名称" autocomplete="off"
+                        class="layui-input qc">
+                </div>
+                <div class="layui-input-inline">
+                    <button @click="sendqc" class="layui-btn saveqc" type="button" lay-submit lay-filter="formDemo">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label big">添加目的</label>
+                <div class="layui-input-inline">
+                    <input v-model="mddata.md" style="width:190px" type="text" name="md" required lay-verify="required" placeholder="请输入锻炼目的" autocomplete="off"
+                        class="layui-input md">
+                </div>
+                <div class="layui-input-inline">
+                    <button @click="sendmd" class="layui-btn savemd" type="button" lay-submit lay-filter="formDemo">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label big">添加锻炼部位</label>
+                <div class="layui-input-inline">
+                    <input v-model="bwdata.bw" style="width:190px" type="text" name="bw" required lay-verify="required" placeholder="请输入锻炼部位" autocomplete="off"
+                        class="layui-input bw">
+                </div>
+                <div class="layui-input-inline">
+                    <button @click="sendbw" class="layui-btn savebw" type="button" lay-submit lay-filter="formDemo">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <% include footer.html %>
+        <script>
+        $('#add').addClass('layui-this');
+		new Vue({
+			el: ".main", 
+			data: {
+				qcdata: {
+                    qc:''
+                },
+                mddata:{
+                    md:''
+                },
+                bwdata:{
+                    bw:''
+                }
+			},
+			methods: {
+                sendqc: function() {
+                    if(!this.qcdata.qc){
+                        return;
+                    }
+					axios({
+						method: "post",
+                        url: "/admin/addqc",
+                        data:Qs.stringify(this.qcdata)                  
+					}).then(response => {
+                        window.location.reload();
+						console.log("sucess...");
+					}).catch(response => {
+						console.log("fail...")
+                    })
+                    
+                },
+                sendmd: function() {
+                    if(!this.mddata.md){
+                        return;
+                    }
+					axios({
+						method: "post",
+                        url: "/admin/addmd",
+                        data:Qs.stringify(this.mddata)                       
+					}).then(response => {
+                        window.location.reload();
+						console.log("sucess...");
+					}).catch(response => {
+						console.log("fail...")
+					})
+                },
+                sendbw: function() {
+                    if(!this.bwdata.bw){
+                        return;
+                    }
+					axios({
+						method: "post",
+                        url: "/admin/addbw",
+                        data:Qs.stringify(this.bwdata)  
+					}).then(response => {
+                        window.location.reload();
+						console.log("sucess...");
+					}).catch(response => {
+						console.log("fail...")
+					})
+				}
+			}
+		})
+        </script>

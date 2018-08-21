@@ -1,0 +1,29 @@
+<% include header.html %>
+    <div class="main">
+        <div class="flex">
+                <%for(let r of reslut)
+                {%>
+            <div class="card">
+                <img width="300px" height="250px" src="<%=r.imgpath%>">
+                <div>
+                    <p>
+                        <%=r.name%>
+                    </p>
+                    <span>
+                        <%=r.equipment%>
+                    </span>
+                    <span>
+                        <%=r.effect%>
+                    </span>
+                    <span>
+                        <%=r.position%>
+                    </span>
+                </div>
+            </div>
+            <%}%>
+        </div>       
+    </div>
+    <% include footer.html %>
+        <script>
+            $('#all').addClass('layui-this')
+        </script>
