@@ -1,19 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="//cdn.muicss.com/mui-0.0.1/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <script src="//cdn.muicss.com/mui-0.0.1/js/mui.min.js"></script>
+    <title>首页</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/122212/148/5b7bb9cef629d819009ada78.css' rel='stylesheet' type='text/css' />
 </head>
+
 <body>
-        <div class="mui-container">
-          <div class="mui-panel">
-            <h1>My Title</h1>
-            <button class="mui-btn mui-btn-primary mui-btn-raised">My Button</button>
+    <div id="app">
+
+      <!-- 背景图片 -->
+      <div class="index-bg">
+          <div class="index-headline">
+            <h1>每日健身</h1>
+          </div>
+      </div>
+
+        <!-- 头部导航内容 -->
+        <nav>
+            <el-row>
+                <el-col :sm="5" :xs="5"><div class="one nav-header">111</div></el-col>
+                <el-col :sm=19 :xs="19"><div class="two nav-header">
+                    <ul>
+                        <li><a href="">首页</a></li>
+                        <li><a href="">精选课程</a></li>
+                        <li><a href="">饮食推荐</a></li>
+                        <li><a href="">发现</a></li>
+                        <li><a href="">个人中心</a></li>
+                        <li><a href="">注册</a></li>
+                        <li><a href="">登录</a></li>
+                    </ul>
+                </div></el-col>
+            </el-row>
+        </nav>
+
+        <!-- 内容区域 -->
+        <!-- 空白内容占位 -->
+        <div class="index-lucency"></div>
+        <!-- 内容区域1 -->
+        <div class="index-one">
+          <div class="index-one-plan">
+            <p class="plan-p-one">多种健身方式供您选择</p>
+            <p class="plan-p-two">包含有氧操，塑性操，心肺激活，瑜伽，燃脂等多种训练计划供您选择</p>
+          </div>
+          <div class="index-one-details">
+            <div class="index-details">
+              <div class="index-details-course">1</div>
+              <div class="index-details-course">2</div>
+              <div class="index-details-course">3</div>
+            </div>
+            <div class="index-details"><img src="images/course.png" alt=""></div>
+            <div class="index-details">
+                <div class="index-details-course">4</div>
+                <div class="index-details-course">5</div>
+                <div class="index-details-course">6</div>
+            </div>
           </div>
         </div>
+        <!-- 内容区域2 -->
+        <div class="index-two"></div>
+        <div class="index-three"></div>
+        
+        <!-- 脚部连接内容 -->
+        <footer></footer>
+    </div>
 </body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { visible: false,
+            labelPosition: 'top',
+            formLabelAlign: {
+                username: '',
+                passwd: '',
+                tel: '',
+                email: ''
+        }
+      }
+    }
+    })
+</script>
 </html>
