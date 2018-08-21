@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="//cdn.muicss.com/mui-0.0.1/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <script src="//cdn.muicss.com/mui-0.0.1/js/mui.min.js"></script>
-</head>
-<body>
-        <div class="mui-container">
-          <div class="mui-panel">
-            <h1>My Title</h1>
-            <button class="mui-btn mui-btn-primary mui-btn-raised">My Button</button>
-          </div>
-        </div>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue 属性</title>
+        <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    </head>
+	<body>
+		<div id="app">
+ 			修改颜色：<input type="checkbox" v-model="change"><br><br>
+  			<div v-bind:class="{'newClass': change}">v-bind:class</div>
+		</div>
+
+	</body>
+    <script>
+		new Vue({
+			el: '#app',
+  			data:{
+  				change: false    //false表示没有勾选，true表示勾选上
+  			}
+		});
+	</script>
+    <style>
+    	.newClass{
+     	 	background: #444;
+     	 	color: #eee;
+		}
+	</style>
 </html>
