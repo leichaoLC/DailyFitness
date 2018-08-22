@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0
+}
+
+/* 背景图填充 */
+.index-bg{
+    height: 1000px;
+    width: 1920px;
+    position: fixed;
+    background-image: url(../images/index.jpg);
+    background-size:cover;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-headline{
+    width: 1200px;
+    height: 400px;
+    margin: 0 360px;
+    /* background-color: aqua; */
+    text-align: center
+}
+
+.index-headline h1{
+    font-size: 100px;
+    color: #fff;
+    font-weight: 400;
+    font-family:'DuanNing-XIng14007715ea1dd64';
+}
+
+/* 导航部分样式 */
+nav{
+    position: fixed;
+    width: 100%;
+    z-index: 1
+}
+
+.nav-header{
+    height: 45px;
+    padding-top: 25px; 
+}
+
+.one{
+    /* background-color: aqua; */
+    padding-left: 25px;
+}
+
+.two{
+    /* background-color: cornflowerblue; */
+    padding-right: 100px;
+    text-align: right;
+    line-height: 45px;
+}
+
+.two ul li{
+    display: inline-block;
+    margin: 0 5px
+}
+
+.two ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 主体内容 */
+.index-lucency{
+width: 100%;
+height: 1000px;
+position: relative
+}
+
+.index-one{
+    /* height: 1000px; */
+    /* background-color: aqua; */
+    position: relative;
+}
+
+.index-one-plan{
+    position: relative;
+    height: 200px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.plan-p-one{
+    font-size: 24px;
+    font-weight: 600
+}
+
+.plan-p-two{
+    margin-top: 50px
+}
+
+.index-one-details{
+    padding: 0 200px;
+    height: 700px;
+    background-color: rgb(61, 61, 61);
+    position: relative;
+    text-align: center;
+}
+
+.index-details{
+    width: 501px;
+    height: 700px;
+    float: left;
+    position: relative;
+}
+
+.index-details img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
+.index-details-course{
+    height: 200px;
+    width: 350px;
+    margin: 25px auto;
+    text-align: left;
+    background-color: aqua
+}

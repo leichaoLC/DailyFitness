@@ -3,6 +3,9 @@
     padding: 0
 }
 
+body{
+    min-width: 800px;
+}
 
 video{  
     position: fixed;  
