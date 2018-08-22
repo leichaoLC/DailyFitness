@@ -103,7 +103,7 @@ source{
     perspective: 500px;
     margin: 0 auto
   }
-  .flip a {
+  .flip span {
     font-weight: 400;
     text-transform: uppercase;
     margin: 0;
@@ -128,8 +128,8 @@ source{
     transition: transform 0.3s;
     cursor: pointer;
   }
-  .flip a .front,
-  .flip a .back {
+  .flip span .front,
+  .flip span .back {
     margin: 0;
     width: 160px;
     height: 48px;
@@ -138,7 +138,7 @@ source{
     text-align: center;
     letter-spacing: 0.4em;
   }
-  .flip a .front {
+  .flip span .front {
     background-color: #222;
     color: #fff;
     -webkit-transform: rotateY(0) translateZ(24px);
@@ -147,7 +147,7 @@ source{
     -ms-transform: rotateY(0) translateZ(24px);
     transform: rotateY(0) translateZ(24px);
   }
-  .flip a .back {
+  .flip span .back {
     background-color: rgba(255,255,255,0);
     color: rgba(34,34,34,0);
     -webkit-transform: rotateX(90deg) translateZ(24px);
@@ -157,7 +157,7 @@ source{
     transform: rotateX(90deg) translateZ(24px);
     overflow: hidden;
   }
-  .flip a .back:after {
+  .flip span .back:after {
     content: '';
     position: absolute;
     top: -32%;
@@ -181,14 +181,14 @@ source{
     -ms-transition-delay: 0.15s;
     transition-delay: 0.15s;
   }
-  .flip a:hover {
+  .flip span:hover {
     -webkit-transform: translateZ(-24px) rotateX(-90deg);
     -moz-transform: translateZ(-24px) rotateX(-90deg);
     -o-transform: translateZ(-24px) rotateX(-90deg);
     -ms-transform: translateZ(-24px) rotateX(-90deg);
     transform: translateZ(-24px) rotateX(-90deg);
   }
-  .flip a:hover .front {
+  .flip span:hover .front {
     background: #000;
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
@@ -196,7 +196,7 @@ source{
     -ms-transition: all 0.8s ease;
     transition: all 0.8s ease;
   }
-  .flip a:hover .back {
+  .flip span:hover .back {
     color: #222;
     -webkit-transition: color 0.4s linear;
     -moz-transition: color 0.4s linear;
@@ -205,7 +205,7 @@ source{
     transition: color 0.4s linear;
     background: #fff;
   }
-  .flip a:hover .back:after {
+  .flip span:hover .back:after {
     -webkit-transform: rotate(6deg) translate(100px, -18px);
     -moz-transform: rotate(6deg) translate(100px, -18px);
     -o-transform: rotate(6deg) translate(100px, -18px);
