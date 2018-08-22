@@ -1,6 +1,7 @@
 *{
     margin: 0;
-    padding: 0
+    padding: 0;
+    font-family: 微软雅黑;
 }
 
 /* 背景图填充 */
@@ -125,4 +126,66 @@ position: relative
     margin: 25px auto;
     text-align: left;
     background-color: aqua
+}
+
+.index-two{
+    position: relative;
+}
+
+.index-two-eggimg{
+    margin: 10px;
+    height: 240px;
+    width: 240px;
+    /* background-color: aqua; */
+}
+
+.index-two-eggimg img{
+    margin: 10px;
+    width: 240px;
+    height: 240px;
+}
+
+.index-two-egg-p{
+    /* height: 300px; */
+    /* width: 500px; */
+    /* background-color: crimson; */
+    text-align: left;
+    margin-top: 20px;
+    font-size: 20px; 
+    font-weight: 600;
+    padding-left: 20px;
+    color: #fff;
+}
+
+.index-two-egg{
+    width: 500px;
+    /* height: auto; */
+    /* background-color: coral; */
+    margin-top: 20px;
+    text-align: center;
+    padding-left: 30px;
+}
+
+.index-two-egg div{
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+    /* background-color: black; */
+    /* display: inline-block; */
+    float: left;
+    /* text-align: center */
+}
+
+.index-two-detailsone{
+    color: #fff;
+    display: block;
+    font-size: 24px;
+    margin-top: 15px
+}
+
+.index-two-detailstwo{
+    display: block;
+    color: #fff;
+    font-size: 24px;
+    margin-top: 20px;
 }
