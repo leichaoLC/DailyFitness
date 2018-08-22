@@ -7,55 +7,75 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>注册</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="/css/register.css">
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <div id="app">
 
-        <video autoplay loop="loop"><source src="images/5s.mp4" type="video/mp4"></video>
+        <video autoplay loop="loop">
+            <source src="/images/5s.mp4" type="video/mp4">
+        </video>
         <!-- 头部导航内容 -->
         <nav>
             <el-row>
-                <el-col :sm="5" :xs="5"><div class="one nav-header">111</div></el-col>
-                <el-col :sm=19 :xs="19"><div class="two nav-header">
-                    <ul>
-                        <li><a href="">首页</a></li>
-                        <li><a href="">精选课程</a></li>
-                        <li><a href="">饮食推荐</a></li>
-                        <li><a href="">发现</a></li>
-                        <li><a href="">个人中心</a></li>
-                        <li><a href="">注册</a></li>
-                        <li><a href="">登录</a></li>
-                    </ul>
-                </div></el-col>
+                <el-col :sm="5" :xs="5">
+                    <div class="one nav-header">111</div>
+                </el-col>
+                <el-col :sm=19 :xs="19">
+                    <div class="two nav-header">
+                        <ul>
+                            <li>
+                                <a href="">首页</a>
+                            </li>
+                            <li>
+                                <a href="">精选课程</a>
+                            </li>
+                            <li>
+                                <a href="">饮食推荐</a>
+                            </li>
+                            <li>
+                                <a href="">发现</a>
+                            </li>
+                            <li>
+                                <a href="">个人中心</a>
+                            </li>
+                            <li>
+                                <a href="">注册</a>
+                            </li>
+                            <li>
+                                <a href="">登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </el-col>
             </el-row>
         </nav>
 
         <!-- 中心表单内容 -->
         <div class="content">
             <div class="form">
-                          <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-                            <el-form-item label="账号" class="label-c">
-                              <el-input v-model="formLabelAlign.username" type="text" class="input-w" ></el-input>
-                            </el-form-item>
-                            <el-form-item label="密码" class="label-c">
-                              <el-input v-model="formLabelAlign.passwd" type="password" class="input-w"></el-input>
-                            </el-form-item>
-                            <el-form-item label="手机号" class="label-c">
-                                <el-input v-model="formLabelAlign.tel" type="tel" class="input-w"></el-input>
-                              </el-form-item>
-                            <el-form-item label="邮箱" class="label-c">
-                              <el-input v-model="formLabelAlign.email" type="email" class="input-w"></el-input>
-                            </el-form-item>
-                            <div class="flip">
-                                <a href="###">
-                                    <div class="front">注册</div>
-                                    <div class="back">注册</div>
-                                </a>
-                            </div>
-                            <!-- <button>重置</button> -->
-                          </el-form>
+                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                    <el-form-item label="账号" class="label-c">
+                        <el-input v-model="formLabelAlign.username" type="text" class="input-w"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" class="label-c">
+                        <el-input v-model="formLabelAlign.passwd" type="password" class="input-w"></el-input>
+                    </el-form-item>
+                    <el-form-item label="手机号" class="label-c">
+                        <el-input v-model="formLabelAlign.tel" type="tel" class="input-w"></el-input>
+                    </el-form-item>
+                    <el-form-item label="邮箱" class="label-c">
+                        <el-input v-model="formLabelAlign.email" type="email" class="input-w"></el-input>
+                    </el-form-item>
+                    <div class="flip">
+                        <span @click="reg">
+                            <div class="front">注册</div>
+                            <div class="back">注册</div>
+                        </span>
+                    </div>
+                    <!-- <button>重置</button> -->
+                </el-form>
             </div>
         </div>
 
@@ -65,20 +85,53 @@
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
 <script>
     new Vue({
-      el: '#app',
-      data: function() {
-        return { visible: false,
-            labelPosition: 'top',
-            formLabelAlign: {
-                username: '',
-                passwd: '',
-                tel: '',
-                email: ''
-        }
-      }
-    }
+        el: '#app',
+        data: function () {
+            return {
+                visible: false,
+                labelPosition: 'top',
+                formLabelAlign: {
+                    username: '',
+                    passwd: '',
+                    tel: '',
+                    email: ''
+                }
+            }
+        },
+        methods: {
+                reg: function() {
+                    let pd=0;
+                    if(!this.formLabelAlign.username){
+                        pd++;
+
+                    };
+                    if(!this.formLabelAlign.passwd){
+                        pd++;
+                    };
+                    if(!this.formLabelAlign.tel){
+                        pd++;
+                    };
+                    if(pd){
+                        return
+                    };
+					axios({
+						method: "post",
+                        url: "/login/reg",
+                        data:Qs.stringify(this.formLabelAlign)                  
+					}).then(response => {
+                        // window.location.reload();
+						console.log("sucess...");
+					}).catch(response => {
+						console.log("fail...")
+                    })
+                    
+                }
+			}
     })
 </script>
+
 </html>
