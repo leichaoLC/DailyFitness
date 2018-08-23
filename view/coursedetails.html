@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/coursedetails.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/coursedetails.css">
 </head>
 <style>
     nav {
@@ -62,7 +62,7 @@
                 </el-col>
                 <el-col :xs="24" :sm="18">
                     <div class="title-one">
-                        <h1>锻炼</h1>
+                        <h1><%=result.name%></h1>
                     </div>
                 </el-col>
             </el-row>
@@ -76,9 +76,10 @@
                 <el-col :xs="24" :sm="18">
                     <div class="classify-one">
                         <ul>
-                            <li>功能：大盗</li>
-                            <li>部位：啊实打实的</li>
-                            <li>器材：打死大四</li>
+                            <li>功能：<%=result.effect%></li>
+                            <li>部位：<%=result.position%></li>
+                            <li>器材：<%=result.equipment%></li>
+                            <li>添加时间：<%=result.time%></li>                       
                         </ul>
                     </div>
                 </el-col>
@@ -91,9 +92,7 @@
                     <div>&nbsp;</div>
                 </el-col>
                 <el-col :xs="24" :sm="18">
-                    <div class="details-one">
-                        
-                    </div>
+                    <div class="details-one"><%-result.process%></div>
                 </el-col>
             </el-row>
         </div>

@@ -90,6 +90,8 @@ server.use('/login',require('./module/login')());
 server.use('/user',require('./module/user')());
 //管理员路由
 server.use('/admin',require('./module/admin/admin')())
+//前端页面路由
+server.use('/index',require('./module/index')());
 
 //静态资源托管
 server.use(express.static('view'));

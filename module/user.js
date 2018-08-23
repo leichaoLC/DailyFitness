@@ -61,5 +61,36 @@ module.exports=function(){
             header:req.session.header
         })
     });
+    router.get('/collection',(req,res)=>{
+        let sql=` SELECT collection.*,course.* FROM collection LEFT JOIN course ON collection.cid=course.cid  WHERE collection.uid=? `
+        mydb.query(sql,req.session.uid,(err,result)=>{
+            let imgreg=/src=[\'\"]?([^\'\"]*\.gif)[\'\"]?/i; 
+            for(let i=0;i<result.length;i++){
+                let r = imgreg.exec(result[i].process); 
+                if(r[1]){
+                    result[i].imgpath = r[1];
+                }             
+            }
+            res.render('collection',{
+                result:result,
+                username:req.session.username,
+                header:req.session.header
+            })
+        }); 
+    });
+    router.post('/delcoll',(req,res)=>{
+        sql=` DELETE  FROM  collection  WHERE  sid=? `
+        console.log(req.body)
+        mydb.query(sql,req.body.sid,(err,result)=>{
+            if(err){
+                res.json({r:'delerr'})
+                console.log(err)
+            }else{
+                res.json({r:'delsuccess'})
+            }
+            
+        })
+    })
+
     return router;
 };
