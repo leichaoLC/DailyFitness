@@ -8,8 +8,34 @@ body{
     margin-top: 50px;
 }
 
-.qwe{
+.title-one{
     background-color: aqua;
     height: 50px;
     text-align: center;
 }
+
+.classify{
+    width: 100%;
+    position: relative;
+    margin-top: 25px;
+}
+
+.classify-one{
+    text-align: center;
+    background-color: chocolate;
+}
+
+.classify-one ul li{
+    /* background-color: aqua; */
+    margin-right: 30px;
+    list-style: none;
+    display: inline-block;
+    font-size: 18px;
+    /* font-weight: 600 */
+}
+
+.details{
+    width: 100%;
+    margin-top: 50px;
+}
+

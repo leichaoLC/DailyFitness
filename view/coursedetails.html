@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="css/coursedetails.css">
 </head>
 <style>
-    nav{
+    nav {
         position: relative;
         background-color: black
     }
 </style>
+
 <body>
     <div id="app">
         <!-- 导航部分 -->
@@ -54,16 +55,48 @@
             </el-row>
         </nav>
 
-     <div class="title">
-        <el-row>
-                <el-col :xs="0" :sm="3"><div>&nbsp;</div></el-col>
-                <el-col :xs="24" :sm="18"><div class="qwe">
-                    <h1>锻炼</h1>
-                </div></el-col>
-        </el-row>
-     </div>
+        <div class="title">
+            <el-row>
+                <el-col :xs="0" :sm="3">
+                    <div>&nbsp;</div>
+                </el-col>
+                <el-col :xs="24" :sm="18">
+                    <div class="title-one">
+                        <h1>锻炼</h1>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
 
-     <div class=""></div>
+        <div class="classify">
+            <el-row>
+                <el-col :xs="0" :sm="3">
+                    <div>&nbsp;</div>
+                </el-col>
+                <el-col :xs="24" :sm="18">
+                    <div class="classify-one">
+                        <ul>
+                            <li>功能：大盗</li>
+                            <li>部位：啊实打实的</li>
+                            <li>器材：打死大四</li>
+                        </ul>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+
+        <div class="details">
+            <el-row>
+                <el-col :xs="0" :sm="3">
+                    <div>&nbsp;</div>
+                </el-col>
+                <el-col :xs="24" :sm="18">
+                    <div class="details-one">
+
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
