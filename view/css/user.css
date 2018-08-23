@@ -10,12 +10,12 @@
     position: absolute;
 }
 body{
-    min-width: 1100px;
+    min-width: 1400px;
     background-color: whitesmoke
 }
 
 .main{
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 220px;
 }
 .text{
@@ -60,3 +60,34 @@ body{
     background-color: #14534c !important;
 }
 
+#head{
+    border-radius: 50%;
+}
+.maintext{
+    font-size: 25px;
+    margin-top: 10px;  
+}
+.maintext span{
+    color: rgb(109, 108, 108);
+}
+.panel{
+    border: 5px solid rgb(255, 255, 255);
+    height: 700px;
+    margin-left: 70px;
+    min-width: 500px;
+    position: relative;
+    margin-top: 10px
+}
+.title{
+    font-size: 25px;
+    background:linear-gradient(90deg ,#09887b, #10a596);
+    color: aliceblue;
+    border-radius: 5px;
+}
+.form{
+    width: 68%;
+    margin: 50px auto;
+}
+#container{
+    height: 400px;
+}

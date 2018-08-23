@@ -3,6 +3,43 @@ module.exports=function(){
     router.get('/',(req,res)=>{
         res.render('login')
     });
+    router.post('/',(req,res)=>{
+        let sql ='select * from user where username=? limit 1';
+        mydb.query(sql, req.body.username, (err, result)=>{
+            if(err){
+                res.json({r:'db_error'});
+                return;
+            }
+            //检查是否存在
+            if(!result.length){
+                res.json({r:'username_not_exist'});
+                return;
+            }
+            if(result[0].statu){
+                res.json({
+                    r:'username_prohibit'
+                })
+                return;
+            }
+            //检查密码正确性
+            if(md5(req.body.passwd)!= result[0].passwd){
+                res.json({r:'passwd_error'});
+                return;
+            }
+         //   SESSION处理          
+            req.session.uid = result[0].uid;
+            req.session.username = result[0].username;
+            req.session.header =result[0].header;
+            //更新登录信息
+            let upsql = `UPDATE user SET logintime = ? WHERE uid = ? LIMIT 1`;
+            mydb.query(upsql, [new Date().toLocaleString(), result[0].uid], (err, r)=>{
+                if(err){
+                    console.log(err);
+                }
+                res.json({r:'ok'});
+            });
+        });
+    });
     router.get('/register',(req,res)=>{
         res.render('register')
     });
@@ -10,15 +47,11 @@ module.exports=function(){
         console.log(req.body)
         let q=req.body;
         let sql=` INSERT INTO user(username,passwd,regtime,logintime,ip,tel) VALUES(?,?,?,?,?,?) `;
-        mydb.query(sql,[q.username,q.passwd,new Date().toLocaleString(),new Date().toLocaleString(),req.ip,q.tel],(err,result)=>{
+        mydb.query(sql,[q.username,md5(q.passwd),new Date().toLocaleString(),new Date().toLocaleString(),req.ip,q.tel],(err,result)=>{
             if(err){
                 res.json({r:'dberr'});
                 console.log(err)
             }else{
-                let sql=` SELECT * FROM user WHERE uid=? `
-                // req.session.uid = result[0].uid;
-                req.session.username =q.username;
-                // req.session.header = result[0].header;
                 res.json({r:'sucess'})
             }
             

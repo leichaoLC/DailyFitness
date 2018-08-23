@@ -5,57 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/layui/css/layui.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/user.css">
     <link rel="stylesheet" href="/css/animate.min.css">
-    <title>管理员</title>
+    <title>个人中心</title>
 </head>
+
 <body>
     <nav>
-        <ul class="layui-nav" lay-filter="">
+        <ul class="layui-nav layui-bg-molv" lay-filter="">
             <li class="layui-nav-item">
                 <a href="">首页</a>
             </li>
             <div style="float: right;margin-right: 50px">
                 <li id="active" class="layui-nav-item">
-                    <a href="/admin">欢迎</a>
+                    <a href="/user" id="title">个人中心</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="">管理员</a>
+                    <a href="">
+                        <img src="<%=header? header:'/images/none.jpg'%>" class="layui-nav-img"><%=username%></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;">退出</a>
+                            <a href="/user/logout">退出</a>
                         </dd>
                     </dl>
                 </li>
             </div>
-
         </ul>
     </nav>
     <aside>
-        <ul class="layui-nav layui-nav-tree aside" lay-filter="test">
+        <ul class="layui-nav layui-nav-tree aside layui-bg-cyan" lay-filter="test">
             <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">运动教程管理</a>
+                <a id="plan" href="/user/plan">健身计划定制</a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">个人信息管理</a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a id="up" href="/admin/upcourse">上传教程</a>
+                        <a id="gr" href="/user/information">个人信息</a>
                     </dd>
                     <dd>
-                        <a id="all" href="/admin/all">所有教程</a>
+                        <a id="scj" href="">收藏夹</a>
                     </dd>
                     <dd>
-                    <a id="add" href="/admin/addclass">添加分类</a>
-                        </dd>
+                        <a id="find" href="">我的发现</a>
+                    </dd>
                 </dl>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">用户管理</a>
+                <a href="javascript:;">评论管理</a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a id="comment" href="/admin/usercomment">用户评论</a>
+                        <a id="add" href="">我的评论</a>
                     </dd>
                     <dd>
-                        <a id="control" href="/admin/usercontrol">用户状态</a>
+                        <a id="add" href="">他人回复</a>
                     </dd>
                 </dl>
             </li>
