@@ -1,0 +1,50 @@
+<% include top.html %>
+    <div class="main">
+        <div class="flex">
+            <%for(let r of result)
+            {%>
+                <div class="card" style="overflow:hidden">
+                    <button value="<%=r.sid%>" class="layui-btn layui-btn-primary layui-btn-sm delcoll">
+                        <i class="layui-icon">&#xe640;</i>
+                    </button>
+                    <img width="300px" height="250px" src="<%=r.imgpath%>">
+                    <div>
+                        <p style="font-size:18px">
+                            <%=r.name%>
+                        </p>
+                        <span>
+                            器材：
+                            <%=r.equipment%>
+                        </span>|
+                        <span>
+                            目的：
+                            <%=r.effect%>
+                        </span>|
+                        <span>
+                            锻炼部位：
+                            <%=r.position%>
+                        </span>
+                    </div>
+                </div>
+                <%}%>
+        </div>
+    </div>
+    <% include bottom.html %>
+        <script>
+            $('.delcoll').click(function () {
+                if(!confirm("确定删除该收藏吗？")){
+                    return;
+                }
+                $.ajax({
+                    url:'/user/delcoll',
+                    data:{sid:$(this).val()},
+                    dataType:'JSON',
+                    type:'POST',
+                    success:function(data){
+                        if(data.r=='delsuccess'){
+                            window.location.reload()
+                        }
+                    }
+                })
+            })
+        </script>

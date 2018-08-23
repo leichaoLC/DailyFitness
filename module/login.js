@@ -40,7 +40,7 @@ module.exports=function(){
             });
         });
     });
-    router.get('/register',(req,res)=>{
+    router.get('./register',(req,res)=>{
         res.render('register')
     });
     router.post('/reg',(req,res)=>{
