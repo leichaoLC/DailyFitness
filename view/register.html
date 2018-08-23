@@ -12,9 +12,11 @@
 
 <body style="overflow: hidden;">
     <div id="app">
-        
+
         <!-- 背景视频设置 -->
-        <video autoplay muted playsinline loop="loop"><source src="/images/5s.mp4" type="video/mp4"></video>
+        <video autoplay muted playsinline loop="loop">
+            <source src="/images/5s.mp4" type="video/mp4">
+        </video>
         <!-- 头部导航内容 -->
         <nav>
             <el-row>
@@ -54,8 +56,8 @@
         <!-- 中心表单内容 -->
         <div class="content">
             <div class="form">
-                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-                    <el-form-item label="账号" class="label-c">
+                <el-form :label-position="labelPosition" label-width="80px" :rules="rules" :model="formLabelAlign" ref="formLabelAlign">
+                    <el-form-item label="账号" class="label-c" prop="username">
                         <el-input v-model="formLabelAlign.username" type="text" class="input-w"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" class="label-c">
@@ -68,7 +70,7 @@
                         <el-input v-model="formLabelAlign.email" type="email" class="input-w"></el-input>
                     </el-form-item>
                     <div class="flip">
-                        <span @click="reg">
+                        <span @click="reg('formLabelAlign')">
                             <div class="front">注册</div>
                             <div class="back">注册</div>
                         </span>
@@ -98,37 +100,60 @@
                     passwd: '',
                     tel: '',
                     email: ''
+                },
+                rules: {
+                    username: [{
+                            required: true,
+                            message: '请输入活动名称',
+                            trigger: 'blur'
+                        },
+                        {
+                            min: 2,
+                            max: 12,
+                            message: '长度在 2 到 12 个字符',
+                            trigger: 'blur'
+                        }
+                    ]
                 }
             }
         },
         methods: {
-                reg: function() {
-                    let pd=0;
-                    if(!this.formLabelAlign.username){
-                        pd++;
-                    };
-                    if(!this.formLabelAlign.passwd){
-                        pd++;
-                    };
-                    if(!this.formLabelAlign.tel){
-                        pd++;
-                    };
-                    if(pd){
-                        return
-                    };
-					axios({
-						method: "post",
-                        url: "/login/reg",
-                        data:Qs.stringify(this.formLabelAlign)                  
-					}).then(response => {
-                        // window.location.reload();
-						console.log("sucess...");
-					}).catch(response => {
-						console.log("fail...")
-                    })
-                    
-                }
-			}
+            reg: function (formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+// <!-- 
+//                 let pd = 0;
+//                 if (!this.formLabelAlign.username) {
+//                     pd++;
+//                 };
+//                 if (!this.formLabelAlign.passwd) {
+//                     pd++;
+//                 };
+//                 if (!this.formLabelAlign.tel) {
+//                     pd++;
+//                 };
+//                 if (pd) {
+//                     return
+//                 };
+//                 axios({
+//                     method: "post",
+//                     url: "/login/reg",
+//                     data: Qs.stringify(this.formLabelAlign)
+//                 }).then(response => {
+//                     // window.location.reload();
+//                     console.log("sucess...");
+//                 }).catch(response => {
+//                     console.log("fail...")
+//                 }) -->
+
+            }
+        }
     })
 </script>
 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/coursedetails.css">
+</head>
+<style>
+    nav{
+        position: relative;
+        background-color: black
+    }
+</style>
+<body>
+    <div id="app">
+        <!-- 导航部分 -->
+        <nav>
+            <el-row>
+                <el-col :sm="5" :xs="5">
+                    <div class="one nav-header">111</div>
+                </el-col>
+                <el-col :sm=19 :xs="19">
+                    <div class="two nav-header">
+                        <ul>
+                            <li>
+                                <a href="">首页</a>
+                            </li>
+                            <li>
+                                <a href="">精选课程</a>
+                            </li>
+                            <li>
+                                <a href="">饮食推荐</a>
+                            </li>
+                            <li>
+                                <a href="">发现</a>
+                            </li>
+                            <li>
+                                <a href="">个人中心</a>
+                            </li>
+                            <li>
+                                <a href="">注册</a>
+                            </li>
+                            <li>
+                                <a href="">登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </el-col>
+            </el-row>
+        </nav>
+
+     <div class="title">
+        <el-row>
+                <el-col :xs="0" :sm="3"><div>&nbsp;</div></el-col>
+                <el-col :xs="24" :sm="18"><div class="qwe">
+                    <h1>锻炼</h1>
+                </div></el-col>
+        </el-row>
+     </div>
+
+     <div class=""></div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                visible: false,
+                labelPosition: 'top',
+                formLabelAlign: {
+                    username: '',
+                    passwd: '',
+                    tel: '',
+                    email: ''
+                }
+            }
+        }
+    })
+</script>
+
+</html>
