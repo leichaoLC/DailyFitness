@@ -1,0 +1,130 @@
+<% include top.html %>
+    <div style="width:800px;" class="main">
+        <form id="personinfo" class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">修改头像</label>
+                <div class="layui-input-block">
+                    <div style="display: inline-block;;border: 1px solid rgb(133, 132, 132);width: 200px;height: 200px;border-radius: 50%">
+                        <img id="headerimg" src="<%=result.header%>" alt="" id="myheader" style="width: 200px;height: 200px;border-radius: 50%">
+                    </div>
+                    <button id="upheader" style="margin-top: 20px;margin-left: 50px" type="button" class="layui-btn layui-btn-primary">上传头像</button>
+                    <input type="file" class="hide" name="header" id="header" accept="image/jpeg, image/png, image/gif, image/bmp, image/svg">
+                    <input id="youheader" type="hidden" name="myheader" value="<%=result.header%>">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                    <input value="<%=result.username%>"  type="text" name="name" required lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">身高</label>
+                <div class="layui-input-inline">
+                    <input value="<%=result.height%>" type="number" name="height" required lay-verify="required" placeholder="请输入身高" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">cm/厘米,0表示保密</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">体重</label>
+                <div class="layui-input-inline">
+                    <input value="<%=result.weight%>" type="number" name="weight" required lay-verify="required" placeholder="请输入体重" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">Kg/千克,0表示保密</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-inline">
+                    <select name="age" lay-verify="required">
+                        <option value=""></option>                  
+                        <%for(var i=0;i<=100;i++){%>
+                            <option <%=result.age==i? 'selected':''%>><%=i%></option>
+                            <%}%>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="保密" title="保密" <%=result.sex==0? 'checked':''%>>
+                    <input type="radio" name="sex" value="男" title="男" <%=result.sex==1? 'checked':''%>>
+                    <input type="radio" name="sex" value="女" title="女" <%=result.sex==2? 'checked':''%>>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">个人简介</label>
+                <div class="layui-input-block">
+                    <textarea name="info" placeholder="请输入内容" class="layui-textarea"><%=result.info%></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button id="submit" type="button" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <% include bottom.html %>
+        <script>
+            $('#gr').addClass('layui-this');
+            $('#upheader').click(function () {
+                $('#header').click();
+            });
+            //处理上传头像
+            $('#header').change(function () {
+                let formdata = new FormData(); //<form></form>
+                formdata.append('editimages', $('#header')[0].files[0]); //input file  value=""
+                $.ajax({
+                    url: '/upload',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: formdata,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data.data[0]);
+                        $('#headerimg').attr('src', data.data[0]);
+                        // 把地址保存在隐藏的输入框，传给服务器
+                        // <input type="hidden" name="myheader" value="">
+                        $('#youheader').val(data.data[0]);
+                        // 把头像的地址
+                    }
+                });
+            });
+            $('#submit').click(function () {
+                var pd=0;
+                if(!$('input[name="name"]').val()){
+                    console.log(1)
+                    pd++;
+                }
+                if(!$('input[name="height"]').val()){
+                    console.log(2)
+                    pd++;
+                }
+                if(!$('input[name="weight"]').val()){
+                    console.log(3)
+                    pd++;
+                }
+                if(!$('select[name="age"]').val()){
+                    pd++;
+                    console.log(4)
+                }
+                if(pd){
+                    return;
+                };
+                $.ajax({
+                    url: '/user/information',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: $('#personinfo').serialize(),
+                    success: function (data) {
+                        if(data.r=='ok'){
+                            window.location.href="/user"
+                        }
+                    }
+                })
+            })
+        </script>
