@@ -54,64 +54,7 @@
                 </el-col>
             </el-row>
         </nav>
-
-        <!-- 课程内容模块 -->
-        <div class="bg">
-            <div class="title">
-                <el-row>
-                    <el-col :xs="0" :sm="3">
-                        <div>&nbsp;</div>
-                    </el-col>
-                    <el-col :xs="24" :sm="18">
-                        <div class="title-one">
-                            <h1>
-                                <%=result.name%>
-                            </h1>
-                        </div>
-                    </el-col>
-                </el-row>
-            </div>
-
-
-            <div class="classify">
-                <el-row>
-                    <el-col :xs="0" :sm="3">
-                        <div>&nbsp;</div>
-                    </el-col>
-                    <el-col :xs="24" :sm="18">
-                        <div class="classify-one">
-                            <ul>
-                                <li>功能：
-                                    <%=result.effect%>
-                                </li>
-                                <li>部位：
-                                    <%=result.position%>
-                                </li>
-                                <li>器材：
-                                    <%=result.equipment%>
-                                </li>
-                                <li>添加时间：
-                                    <%=result.time%>
-                                </li>
-                            </ul>
-                        </div>
-                    </el-col>
-                </el-row>
-            </div>
-            
-        </div>
-        <div class="details">
-            <el-row>
-                <el-col :xs="0" :sm="3">
-                    <div>&nbsp;</div>
-                </el-col>
-                <el-col :xs="24" :sm="18">
-                    <div class="details-one">
-                        <%-result.process%>
-                    </div>
-                </el-col>
-            </el-row>
-        </div>
+        
     </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
