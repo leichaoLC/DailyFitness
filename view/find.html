@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,58 +12,103 @@
 
 <body>
     <div id="app">
-        <el-row :gutter="20">
-            <el-col :span="4">
-                <div class="grid-content bg-purple">
-                        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-                                <el-radio-button :label="false">展开</el-radio-button>
-                                <el-radio-button :label="true">收起</el-radio-button>
-                              </el-radio-group>
-                              <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-                                <el-submenu index="1">
-                                  <template slot="title">
-                                    <i class="el-icon-location"></i>
-                                    <span slot="title">导航一</span>
-                                  </template>
-                                  <el-menu-item-group>
-                                    <span slot="title">分组一</span>
-                                    <el-menu-item index="1-1">选项1</el-menu-item>
-                                    <el-menu-item index="1-2">选项2</el-menu-item>
-                                  </el-menu-item-group>
-                                  <el-menu-item-group title="分组2">
-                                    <el-menu-item index="1-3">选项3</el-menu-item>
-                                  </el-menu-item-group>
-                                  <el-submenu index="1-4">
-                                    <span slot="title">选项4</span>
-                                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                                  </el-submenu>
-                                </el-submenu>
-                                <el-menu-item index="2">
-                                  <i class="el-icon-menu"></i>
-                                  <span slot="title">导航二</span>
-                                </el-menu-item>
-                                <el-menu-item index="3" disabled>
-                                  <i class="el-icon-document"></i>
-                                  <span slot="title">导航三</span>
-                                </el-menu-item>
-                                <el-menu-item index="4">
-                                  <i class="el-icon-setting"></i>
-                                  <span slot="title">导航四</span>
-                                </el-menu-item>
-                              </el-menu>
-                
+        <div class="bg">
+        <el-row>
+            <el-menu default-active="2" class="el-menu-vertical-demo asdie" 
+                text-color="#fff" active-text-color="#ffd04b">
+                <el-submenu index="1">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>导航一</span>
+                    </template>
+                    <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="1-1">选项1</el-menu-item>
+                        <el-menu-item index="1-2">选项2</el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group title="分组2">
+                        <el-menu-item index="1-3">选项3</el-menu-item>
+                    </el-menu-item-group>
+                    <el-submenu index="1-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="1-4-1">选项1</el-menu-item>
+                    </el-submenu>
+                </el-submenu>
+                <el-menu-item index="2">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">导航二</span>
+                </el-menu-item>
+                <el-menu-item index="3">
+                    <i class="el-icon-document"></i>
+                    <span slot="title">导航三</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">导航四</span>
+                </el-menu-item>
+            </el-menu>      
+            <el-col :span="19" :offset="4">
+                <div class="grid-content bg-purple-light">
+                    <p style="font-size:35px;color: rgb(251, 251, 251);margin-top: 20px;margin-bottom: 20px">发现更美好的自己</p>
+                    <hr>
+                    <div id="main">                           
+                          <div class="card">
+                              <img width="100%" height="100%" src="./images/none.jpg">
+                              <div>
+                                  <h3>我是标题</h3>
+                                  <p>
+                                      
+
+                                  </p>
+                            </div>
+                          </div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>
+                          <div class="card"></div>             
+                    </div>
+                   
                 </div>
             </el-col>
-            <el-col :span="20">
-                <div class="grid-content bg-purple-light"></div>
-            </el-col>
-        </el-row>
+        </el-row>     
+    </div>
     </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
 <script>
-    new Vue().$mount('#app')
+        window.onload = function () {
+        $('.bg').css('height', $(document).height());
+        $('.bgone').css('height', $(document).height());
+        window.onresize = function () {
+            $('.bg').css('height', $(document).height());
+            $('.bgone').css('height', $(document).height())
+        };
+        $('#main').scroll(function(){  
+            if($('#main').scrollTop()>200){
+                $('.bg').removeClass('bg').addClass('bgone')
+                var bg=document.getElementsByClassName('bg')
+                console.log(window.getComputedStyle(bg,":after"))          
+            }
+            if($('#main').scrollTop()<200){
+                $('.bgone').removeClass('bgone').addClass('bg')
+            }
+        })
+
+    };
+    new Vue({
+        data: {
+            isCollapse: true
+        }
+    }).$mount('#app')
 </script>
 
 </html>

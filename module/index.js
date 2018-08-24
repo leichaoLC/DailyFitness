@@ -8,5 +8,8 @@ module.exports=function(){
             })
         });
     });
+    router.get('/courseoutline',(req,res)=>{
+        res.render('courseoutline')
+    });
     return router;
 }
