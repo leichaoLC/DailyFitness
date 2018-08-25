@@ -11,5 +11,61 @@ module.exports=function(){
     router.get('/courseoutline',(req,res)=>{
         res.render('courseoutline')
     });
+    router.get('/find',(req,res)=>{
+        let sql=` select * from find `;
+        mydb.query(sql,(err,result)=>{
+            res.render('find',{result:result})
+        })    
+    });
+    router.post('/fabu',(req,res)=>{
+        let sql=` INSERT INTO find(mainpic,content,times,uid,username) VALUES(?,?,?,?,?) `;
+        if(!req.session.uid){
+            res.json({r:'notlogin'})
+            return;
+        }
+        mydb.query(sql,[req.body.imageUrl,req.body.desc,new Date().toLocaleString(),req.session.uid,req.session.username],(err,result)=>{
+            if(err){
+                res.json({r:'dberr'});
+                console.log(err)
+            }else{
+                res.json({r:'ok'})
+            }
+        })
+    });
+    router.post('/comment',(req,res)=>{
+        let sql=` SELECT comments.*,find.*,user.header FROM find LEFT JOIN comments ON comments.fid=find.fid LEFT JOIN user ON comments.uid=user.uid  WHERE find.fid=? `;
+        mydb.query(sql,req.body.fid,(err,result)=>{
+            if(err){
+                res.json({r:'dberr'});
+                console.log(err)
+            }else{
+                res.json({data:result})
+            }
+        }) 
+    });
+    router.post('/commented',(req,res)=>{
+        let sql=`INSERT INTO comments(fid,commen,daten,uid,commentator) VALUES(?,?,?,?,?) `;
+        if(!req.session.uid){
+            res.json({r:'notlogin'})
+            return;
+        };
+        mydb.query(sql,[req.body.fid2,req.body.comment,new Date().toLocaleString(),req.session.uid,req.session.username],(err,result)=>{
+            if(err){
+                res.json({r:'dberr'});
+                console.log(err)
+            }else{
+                let sql=` SELECT comments.*,user.header FROM comments LEFT JOIN user ON comments.uid=user.uid  WHERE comments.fid=? `;
+                mydb.query(sql,req.body.fid2,(err,result)=>{
+                    if(err){
+                        res.json({r:'dberr'});
+                        console.log(err)
+                    }else{
+                        res.json({data:result,r:'ok'})
+                    }
+                }) 
+            }
+
+        });
+    })
     return router;
 }

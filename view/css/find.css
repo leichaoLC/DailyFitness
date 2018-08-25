@@ -9,7 +9,7 @@
   .asdie{
     height: 100vh;
     position: fixed;
-    border: 0px
+    border: 0px;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
@@ -27,7 +27,7 @@
       background-repeat:no-repeat;
       z-index: -2;
   }
-  .bgone{
+  /* .bgone{
     width: 100%;
     position: absolute;
     bottom: 0px;
@@ -38,18 +38,20 @@
     background-attachment: fixed;
     background-repeat:no-repeat;
     z-index: -2;
-  }
-  .bgone::after{
+  } */
+  .bgone{
     content: "";
     width:100%;
     height:100%;
     position: absolute;
-    background: inherit;
+    background-image: url(../images/1.jpg);
+    background-attachment: fixed;
+    background-repeat:no-repeat;
     left:0;
     top:0;
     filter: blur(10px);
     z-index: -1;
-    opacity: ;
+    opacity: 0;
   }
   #main{
       width: 100%;
@@ -72,10 +74,122 @@
 }
 .card{
     background-color: rgba(251, 251, 251, 0.822);
-    box-shadow: 0px 0px 10px rgb(83, 82, 82);
+    box-shadow: 0px 0px 10px rgb(7, 7, 7);
     height: 400px;
-    width: 350px;
-    margin-left:45px;
+    width: 370px;
+    margin-left:30px;
     margin-top: 15px; 
+    overflow: hidden;
+}
+.card:hover img{
+     transform: scale(1.1);
+     transition: transform .5s
+}
+.card img{
+    transition: transform .5s
 }
 #main::-webkit-scrollbar {display:none}
+.comment::-webkit-scrollbar {display:none}
+#add{
+    display: block;
+    margin: 100px auto;
+    opacity: 0.6;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+#add:hover{
+    transform: scale(1.2);
+    transition: transform 0.3s;
+}
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 250px;
+    height: 250px;
+    line-height: 250px;
+    text-align: center;
+  }
+  .avatar {
+    width: 250px;
+    height: 250px;
+    display: block;
+  }
+  .findmain{
+      position: relative;
+      width: 370px;
+      height: 100px;
+      top: 0;
+      transition: top .5s;
+      background-color: rgba(251, 251, 251, 0.822);
+  }
+  .el-dialog{
+      background-color: rgba(255, 255, 255, 0.85)
+  } 
+  .textfind{
+    text-indent:1em;
+    width: 95%;
+    margin: 0 auto;
+    height: 70px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 24px;
+    font-size: 16px;
+    overflow: hidden;
+    color: rgb(59, 59, 59);
+  }
+  .footer{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2px;
+      color: rgb(59, 59, 59);
+  }
+  .card:hover .findmain{
+      top:-100px;
+      transition: top .5s;
+  }
+  .el-icon-tickets:hover{
+      color: black
+  }
+  .el-icon-tickets{
+      cursor: pointer;
+  }
+  .demo-ruleForm{
+      position: relative;
+      top: 36px
+  }
+  .comment{
+    text-indent:1em;
+    line-height: 24px;
+    font-size: 16px;
+    overflow: auto;
+  }
+  .texttitlle{
+      position: relative;
+      top: -20px;
+      font-size: 20px;
+  }
+  .commentbox{
+      display: flex;
+      justify-content: center;
+  }
+  .commenttext{
+      width: 95%;
+      margin-top: 15px;
+  }
+  .uppicfind{
+   margin-top: -60px
+  }
+  .footerfont{
+      font-size: 14px
+  }
