@@ -262,10 +262,8 @@ tr{
     background-color: rgba(61, 61, 61, 0.4)
 }
 
-footer{
-    height: 100px;
-    background-color: coral;
-    padding: 30px 200px 
+.animation-time{
+    animation-duration: 1.5s;
 }
 
 .index-three-share:nth-child(1){

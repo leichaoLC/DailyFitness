@@ -7,35 +7,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/122212/148/5b7bb9cef629d819009ada78.css' rel='stylesheet' type='text/css'>
+    <link href="https://lib.baomitu.com/animate.css/3.7.0/animate.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
-    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/122212/148/5b7bb9cef629d819009ada78.css' rel='stylesheet' type='text/css' />
 </head>
 
 <body>
     <div id="app">
 
-      <!-- 背景图片 -->
-      <div class="index-bg">
-          <div class="index-headline">
-            <h1>每日健身</h1>
-          </div>
-      </div>
+        <!-- 背景图片 -->
+        <div class="index-bg">
+            <div class="index-headline">
+                <h1>每日健身</h1>
+            </div>
+        </div>
 
         <!-- 头部导航内容 -->
         <nav>
             <el-row>
-                <el-col :sm="5" :xs="5"><div class="one nav-header">111</div></el-col>
-                <el-col :sm=19 :xs="19"><div class="two nav-header">
-                    <ul>
-                        <li><a href="">首页</a></li>
-                        <li><a href="">精选课程</a></li>
-                        <li><a href="">饮食推荐</a></li>
-                        <li><a href="">发现</a></li>
-                        <li><a href="">个人中心</a></li>
-                        <li><a href="">注册</a></li>
-                        <li><a href="">登录</a></li>
-                    </ul>
-                </div></el-col>
+                <el-col :sm="5" :xs="5">
+                    <div class="one nav-header">111</div>
+                </el-col>
+                <el-col :sm=19 :xs="19">
+                    <div class="two nav-header">
+                        <ul>
+                            <li>
+                                <a href="">首页</a>
+                            </li>
+                            <li>
+                                <a href="">精选课程</a>
+                            </li>
+                            <li>
+                                <a href="">饮食推荐</a>
+                            </li>
+                            <li>
+                                <a href="">发现</a>
+                            </li>
+                            <li>
+                                <a href="">个人中心</a>
+                            </li>
+                            <li>
+                                <a href="">注册</a>
+                            </li>
+                            <li>
+                                <a href="">登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </el-col>
             </el-row>
         </nav>
 
@@ -43,162 +62,252 @@
         <!-- 空白内容占位 -->
         <div class="index-lucency"></div>
         <!-- 内容区域1 -->
-        <div class="index-one">
-          <div class="index-one-plan">
-            <p class="plan-p-one">多种健身方式供您选择</p>
-            <p class="plan-p-two">包含有氧操，塑性操，心肺激活，瑜伽，燃脂等多种训练计划供您选择</p>
-          </div>
-          <div class="index-one-details">
-            <div class="index-details">
-              <div class="index-details-course idnex-one-bg"><a href=""><div class="index-one-content"><span>HIIT间歇训练</span></div></a></div>
-              <div class="index-details-course idnex-one-bg"><a href=""><div class="index-one-content"><span>力量</span></div></a></div>
-              <div class="index-details-course idnex-one-bg"><a href=""><div class="index-one-content"><span>有氧运动</span></div></a></div>
-            </div>
-            <div class="index-details"><img src="images/course.png" alt=""></div>
-            <div class="index-details">
-                <div class="index-details-course idnex-two-bg"><a href=""><div class="index-one-content"><span>增肌</span></div></a></div>
-                <div class="index-details-course idnex-two-bg"><a href=""><div class="index-one-content"><span>核心力量训练</span></div></a></div>
-                <div class="index-details-course idnex-two-bg"><a href=""><div class="index-one-content"><span>减肥</span></div></a></div>
-            </div>
-          </div>
-        </div>
-        <!-- 内容区域2 -->
-        <div class="index-two">
-            <div class="index-one-plan">
-                <p class="plan-p-one">多种健康食谱供您挑选</p>
-                <p class="plan-p-two">三分练，七分吃，在合理训练的前提下，精确的热量计算食谱保证身体朝着自己希望的方向发展。</p>
-            </div>
-            <div class="index-one-details">
-                <div class="index-details">
-                    <div class="index-two-eggimg"><img src="images/egg.png" alt=""></div>
-                    <div class="index-two-egg-p">
-                        <p>减肥人群：适量食用</p>
-                        
+        <div style="background-color: #fff">
+            <div class="index-one">
+                <div class="index-one-plan animation-time" id="index-one-plan-one">
+                    <p class="plan-p-one">多种健身方式供您选择</p>
+                    <p class="plan-p-two">包含有氧操，塑性操，心肺激活，瑜伽，燃脂等多种训练计划供您选择</p>
+                </div>
+                <div class="index-one-details animation-time"  id="index-one-details-one">
+                    <div class="index-details">
+                        <div class="index-details-course idnex-one-bg">
+                            <a href="">
+                                <div class="index-one-content">
+                                    <span>HIIT间歇训练</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="index-details-course idnex-one-bg">
+                            <a href="">
+                                <div class="index-one-content">
+                                    <span>力量</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="index-details-course idnex-one-bg">
+                            <a href="">
+                                <div class="index-one-content">
+                                    <span>有氧运动</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="index-two-egg">
-                        <div>
-                            <span class="index-two-detailsone">热量</span>
-                            <span class="index-two-detailstwo">209千卡</span>
+                    <div class="index-details">
+                        <img src="images/course.png" alt="">
+                    </div>
+                    <div class="index-details">
+                        <div class="index-details-course idnex-two-bg">
+                            <a href="">
+                                <div class="index-one-content">
+                                    <span>增肌</span>
+                                </div>
+                            </a>
                         </div>
-                        <div>
-                            <span class="index-two-detailsone">蛋白质</span>
-                            <span class="index-two-detailstwo">11.88g</span>
+                        <div class="index-details-course idnex-two-bg">
+                            <a href="">
+                                <div class="index-one-content">
+                                    <span>核心力量训练</span>
+                                </div>
+                            </a>
                         </div>
-                        <div>
-                            <span class="index-two-detailsone">碳水化合物</span>
-                            <span class="index-two-detailstwo">2.50g</span>
-                        </div>
-                        <div>
-                            <span class="index-two-detailsone">脂肪</span>
-                            <span class="index-two-detailstwo">16.79g</span>
+                        <div class="index-details-course idnex-two-bg">
+                            <a href="">
+                                <div class="index-one-content">
+                                    <span>减肥</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- 内容区域2 -->
+            <div class="index-two">
+                <div class="index-one-plan animation-time" id="index-one-plan-two">
+                    <p class="plan-p-one">多种健康食谱供您挑选</p>
+                    <p class="plan-p-two">三分练，七分吃，在合理训练的前提下，精确的热量计算食谱保证身体朝着自己希望的方向发展。</p>
+                </div>
+                <div class="index-one-details animation-time" id="index-one-details-two">
+                    <div class="index-details">
+                        <div class="index-two-eggimg">
+                            <img src="images/egg.png" alt="">
+                        </div>
+                        <div class="index-two-egg-p">
+                            <p>减肥人群：适量食用</p>
 
-                <div class="index-details">
-                    <p class="two-title">鸡蛋</p>
-                    <table>
-                        <tr>
-                            <th>营养素</th>
-                            <th>含量（每100克）</th>
-                        </tr>
-                        <tr>
-                            <td>热量(大卡)</td>
-                            <td>208.84</td>
-                        </tr>
-                        <tr>
-                            <td>脂肪(克)</td>
-                            <td>16.79</td>
-                        </tr>
-                        <tr>
-                            <td>碳水化合物(克)</td>
-                            <td>2.50</td>
-                        </tr>
-                        <tr>
-                            <td>蛋白质(克)</td>
-                            <td>11.88</td>
-                        </tr>
-                        <tr>
-                            <td>胆固醇(毫克)</td>
-                            <td>一</td>
-                        </tr>
-                    </table>
-                    <p class="two-way">做法</p>
-                    <p class="two-way-two">&nbsp;&nbsp;用平底锅，倒入一点豆油或其他植物油，一元硬币大小就够了，把油在锅底摇匀，稍稍加热，打入一枚鸡蛋，煎一小会儿，翻面，喜欢糖心的不用动，不喜欢的用铲子稍稍压一下，把蛋黄压破，不然蛋黄很难煎熟，两面都煎好了出锅，在表面洒一点点盐。</p>
+                        </div>
+                        <div class="index-two-egg">
+                            <div>
+                                <span class="index-two-detailsone">热量</span>
+                                <span class="index-two-detailstwo">209千卡</span>
+                            </div>
+                            <div>
+                                <span class="index-two-detailsone">蛋白质</span>
+                                <span class="index-two-detailstwo">11.88g</span>
+                            </div>
+                            <div>
+                                <span class="index-two-detailsone">碳水化合物</span>
+                                <span class="index-two-detailstwo">2.50g</span>
+                            </div>
+                            <div>
+                                <span class="index-two-detailsone">脂肪</span>
+                                <span class="index-two-detailstwo">16.79g</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="index-details">
-                            <div class="index-two-eggimg"><img src="images/egg.png" alt=""></div>
-                            <div class="index-two-egg-p">
-                                <p>减肥人群：适量食用</p>
-                                
+                        <p class="two-title">鸡蛋</p>
+                        <table>
+                            <tr>
+                                <th>营养素</th>
+                                <th>含量（每100克）</th>
+                            </tr>
+                            <tr>
+                                <td>热量(大卡)</td>
+                                <td>208.84</td>
+                            </tr>
+                            <tr>
+                                <td>脂肪(克)</td>
+                                <td>16.79</td>
+                            </tr>
+                            <tr>
+                                <td>碳水化合物(克)</td>
+                                <td>2.50</td>
+                            </tr>
+                            <tr>
+                                <td>蛋白质(克)</td>
+                                <td>11.88</td>
+                            </tr>
+                            <tr>
+                                <td>胆固醇(毫克)</td>
+                                <td>一</td>
+                            </tr>
+                        </table>
+                        <p class="two-way">做法</p>
+                        <p class="two-way-two">&nbsp;&nbsp;用平底锅，倒入一点豆油或其他植物油，一元硬币大小就够了，把油在锅底摇匀，稍稍加热，打入一枚鸡蛋，煎一小会儿，翻面，喜欢糖心的不用动，不喜欢的用铲子稍稍压一下，把蛋黄压破，不然蛋黄很难煎熟，两面都煎好了出锅，在表面洒一点点盐。</p>
+                    </div>
+
+                    <div class="index-details">
+                        <div class="index-two-eggimg">
+                            <img src="images/egg.png" alt="">
+                        </div>
+                        <div class="index-two-egg-p">
+                            <p>减肥人群：适量食用</p>
+
+                        </div>
+                        <div class="index-two-egg">
+                            <div>
+                                <span class="index-two-detailsone">热量</span>
+                                <span class="index-two-detailstwo">209千卡</span>
                             </div>
-                            <div class="index-two-egg">
-                                <div>
-                                    <span class="index-two-detailsone">热量</span>
-                                    <span class="index-two-detailstwo">209千卡</span>
-                                </div>
-                                <div>
-                                    <span class="index-two-detailsone">蛋白质</span>
-                                    <span class="index-two-detailstwo">11.88g</span>
-                                </div>
-                                <div>
-                                    <span class="index-two-detailsone">碳水化合物</span>
-                                    <span class="index-two-detailstwo">2.50g</span>
-                                </div>
-                                <div>
-                                    <span class="index-two-detailsone">脂肪</span>
-                                    <span class="index-two-detailstwo">16.79g</span>
-                                </div>
+                            <div>
+                                <span class="index-two-detailsone">蛋白质</span>
+                                <span class="index-two-detailstwo">11.88g</span>
+                            </div>
+                            <div>
+                                <span class="index-two-detailsone">碳水化合物</span>
+                                <span class="index-two-detailstwo">2.50g</span>
+                            </div>
+                            <div>
+                                <span class="index-two-detailsone">脂肪</span>
+                                <span class="index-two-detailstwo">16.79g</span>
                             </div>
                         </div>
-              </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 内容区域3 -->
+            <div class="index-three">
+                <div class="index-one-plan animation-time" id="index-one-plan-three">
+                    <p class="plan-p-one">分享健身成果，一起进步</p>
+                    <p class="plan-p-two">拍照记录每一天的变化，分享好友相互勉励，在每日健身不再是孤独的坚持。</p>
+                </div>
+                <div class="index-one-details animation-time" id="index-one-details-three">
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                    <div class="index-three-share"></div>
+                </div>
+            </div>
+            <!-- 内容区域4
+            <div class="index-four">
+                <div class="index-one-plan">
+                </div>
+                <div class="index-one-details index-four-img">
+                    <div></div>
+                </div>
+            </div> -->
+            <!-- 脚部连接内容 -->
+            <!-- <footer></footer> -->
         </div>
-        <!-- 内容区域3 -->
-        <div class="index-three">
-            <div class="index-one-plan">
-                <p class="plan-p-one">分享健身成果，一起进步</p>
-                <p class="plan-p-two">拍照记录每一天的变化，分享好友相互勉励，在每日健身不再是孤独的坚持。</p>
-            </div>
-            <div class="index-one-details">
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-                <div class="index-three-share"></div>
-            </div>
-        </div>
-        <!-- 内容区域4 -->
-        <div class="index-four">
-            <div class="index-one-plan">
-            </div>
-            <div class="index-one-details index-four-img">
-                <div></div>
-            </div>
-        </div>
-        <!-- 脚部连接内容 -->
-        <footer></footer>
     </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     new Vue({
-      el: '#app',
-      data: function() {
-        return { visible: false,
-            labelPosition: 'top',
-            formLabelAlign: {
-                username: '',
-                passwd: '',
-                tel: '',
-                email: ''
-        }
-      }
-    }
+        el: '#app',
+        data: function () {
+            return {
+                visible: false,
+                labelPosition: 'top',
+                formLabelAlign: {
+                    username: '',
+                    passwd: '',
+                    tel: '',
+                    email: ''
+                }
+            }
+        },
+        mounted: function () {
+            window.onscroll = function () {
+                // 浏览器可视区域高度
+                const documentClientHeight = document.documentElement.clientHeight;
+                console.log(documentClientHeight);
+                
+                const indexOnePlanOne = document.getElementById('index-one-plan-one');
+                const indexOnePlanOneTop = indexOnePlanOne.getBoundingClientRect().top;
+                if (documentClientHeight > indexOnePlanOneTop) {
+                     indexOnePlanOne.classList.add("animated", "fadeInUp")
+                } 
+
+                const indexOneDetailsOne = document.getElementById('index-one-details-one');
+                const indexOneDetailsOneTop = indexOneDetailsOne.getBoundingClientRect().top;
+                if (documentClientHeight > indexOneDetailsOneTop) {
+                    indexOneDetailsOne.classList.add("animated", "fadeInUp")
+                }
+
+                const indexOnePlanTwo = document.getElementById('index-one-plan-two');
+                const indexOnePlanTwoTop = indexOnePlanTwo.getBoundingClientRect().top;
+                if (documentClientHeight > indexOnePlanTwoTop) {
+                     indexOnePlanTwo.classList.add("animated", "fadeInUp")
+                } 
+
+                const indexOneDetailsTwo = document.getElementById('index-one-details-two');
+                const indexOneDetailsTwoTop = indexOneDetailsTwo.getBoundingClientRect().top;
+                if (documentClientHeight > indexOneDetailsTwoTop) {
+                indexOneDetailsTwo.classList.add("animated", "fadeInUp")
+                }
+
+                const indexOnePlanThree = document.getElementById('index-one-plan-three');
+                const indexOnePlanThreeTop = indexOnePlanThree.getBoundingClientRect().top;
+                if (documentClientHeight > indexOnePlanThreeTop) {
+                     indexOnePlanThree.classList.add("animated", "fadeInUp")
+                } 
+
+                const indexOneDetailsThree = document.getElementById('index-one-details-three');
+                const indexOneDetailsThreeTop = indexOneDetailsThree.getBoundingClientRect().top;
+                if (documentClientHeight > indexOneDetailsThreeTop) {
+                indexOneDetailsThree.classList.add("animated", "fadeInUp")
+                }
+            }
+        },
+        methods: {}
     })
 </script>
+
 </html>
