@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/coursedetails.css">
 </head>
@@ -93,12 +94,14 @@
                                 <li>添加时间：
                                     <%=result.time%>
                                 </li>
+                                <li id="collect" @click="dj">
+                                    <i :class="[{'fa-star-o':isActive, 'fa-star': !isActive}, 'fa'] " aria-hidden="true"></i>
+                                </li>
                             </ul>
                         </div>
                     </el-col>
                 </el-row>
             </div>
-            
         </div>
         <div class="details">
             <el-row>
@@ -112,10 +115,12 @@
                 </el-col>
             </el-row>
         </div>
+        <div></div>
     </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="/js/coursedetails.js"></script>
 <script>
     new Vue({
         el: '#app',
@@ -123,13 +128,21 @@
             return {
                 visible: false,
                 labelPosition: 'top',
+                isActive:true,
                 formLabelAlign: {
                     username: '',
                     passwd: '',
                     tel: '',
-                    email: ''
+                    email: '',
+                    
+                    
                 }
             }
+        },
+        methods:{
+            dj:function(){
+                this.isActive  = !this.isActive;
+            },
         }
     })
 </script>
