@@ -127,30 +127,16 @@
                         return false;
                     }
                 });
-// <!-- 
-//                 let pd = 0;
-//                 if (!this.formLabelAlign.username) {
-//                     pd++;
-//                 };
-//                 if (!this.formLabelAlign.passwd) {
-//                     pd++;
-//                 };
-//                 if (!this.formLabelAlign.tel) {
-//                     pd++;
-//                 };
-//                 if (pd) {
-//                     return
-//                 };
-//                 axios({
-//                     method: "post",
-//                     url: "/login/reg",
-//                     data: Qs.stringify(this.formLabelAlign)
-//                 }).then(response => {
-//                     // window.location.reload();
-//                     console.log("sucess...");
-//                 }).catch(response => {
-//                     console.log("fail...")
-//                 }) -->
+                axios({
+                    method: "post",
+                    url: "/login/reg",
+                    data: Qs.stringify(this.formLabelAlign)
+                }).then(response => {
+                    // window.location.reload();
+                    console.log("sucess...");
+                }).catch(response => {
+                    console.log("fail...")
+                }) 
 
             }
         }
