@@ -17,36 +17,28 @@
             </div>
             <el-row>
                 <el-menu default-active="2" class="el-menu-vertical-demo asdie" text-color="#fff" active-text-color="#ffd04b">
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span>导航一</span>
-                        </template>
-                        <el-menu-item-group>
-                            <template slot="title">分组一</template>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item index="1-3">选项3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-submenu index="1-4">
-                            <template slot="title">选项4</template>
-                            <el-menu-item index="1-4-1">选项1</el-menu-item>
-                        </el-submenu>
-                    </el-submenu>
-                    <el-menu-item index="2">
+                    <el-menu-item style="margin-top:50px" index="2">
                         <i class="el-icon-menu"></i>
-                        <span slot="title">导航二</span>
+                        <span slot="title"><a style="color: white;text-decoration: none" href="/index">首页</a></span>
                     </el-menu-item>
                     <el-menu-item index="3">
                         <i class="el-icon-document"></i>
-                        <span slot="title">导航三</span>
+                        <span slot="title"><a style="color: white;text-decoration: none" href="">动作库</a></span>
                     </el-menu-item>
                     <el-menu-item index="4">
                         <i class="el-icon-setting"></i>
-                        <span slot="title">导航四</span>
+                        <span slot="title"><a style="color: white;text-decoration: none" href="/user">个人中心</a></span>
                     </el-menu-item>
+                    <el-submenu index="1">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>Log/Reg</span>
+                            </template>
+                            <el-menu-item-group>
+                                <el-menu-item index="1-1"><a style="color: white;text-decoration: none" href="/login"><i class="el-icon-sort"></i>登录</a></el-menu-item>
+                                <el-menu-item index="1-2"><a style="color: white;text-decoration: none" href="/login/register"> <i class="el-icon-plus"></i>注册</a> </el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
                     <img id="add" @click="dialogVisible = true" width="100px" src="/images/add.png">
 
                 </el-menu>
@@ -64,8 +56,8 @@
                                         <p class="textfind"><%=r.content%></p>
                                         <p class="footer footerfont">
                                             <span>发布者：<%=r.username%></span>
-                                            <span>时间：<%=r.times.getFullYear() + '-' + (r.times.getMonth() + 1) + '-' + r.times.getDate() + ' ' + r.times.getHours() + ':' + r.times.getMinutes() + ':' + r.times.getSeconds();  %></span>
-                                            <i value="<%=r.fid%>" @click="openwindow" class="savefid el-icon-tickets"></i>
+                                            <span>时间：<%=new Date(r.times).toLocaleString()%></span>
+                                            <i @click="openwindow(<%=r.fid%>)" class="savefid el-icon-tickets"></i>
                                         </p>
                                     </div>
                                 </div>
@@ -104,13 +96,13 @@
         <el-dialog :visible.sync="open" width="40%">
             <div>
                 <p class="footer texttitlle">
-                    <span >发布者：{{commen.username}}</span>
-                    <span >时间：{{commen.time}}</span>
+                    <span>发布者：{{commen.username}}</span>
+                    <span>时间：{{new Date(commen.time).toLocaleString()}}</span>
                 </p>
-                <el-row :gutter="20">
+                <el-row :gutter="20" style="margin-bottom:10px">
                     <el-col :span="14">
-                        <div class="">
-                            <img width="100%" height="250px" v-bind:src="commen.mainpic">
+                        <div>
+                            <img style="box-shadow:0px 0px 5px black" width="100%" height="250px" v-bind:src="commen.mainpic">
                         </div>
                     </el-col>
                     <el-col :span="10">
@@ -127,32 +119,35 @@
 
             <div style="max-height:310px;overflow:auto">
                 <div v-if="commen.comall[0].header" v-for="all in commen.comall">
-                <el-row>
-                    <el-col :span="4">
-                        <p style="width:60px;text-align:center">{{all.commentator}}</p>
-                        <img width="60px" height="60px" style="border-radius:50%" v-bind:src="all.header" alt="">
-                        <p style="width:60px;text-align:center">{{all.daten}}</p>
-                    </el-col>
-                    <el-col :span="20" class="commentbox">
-                        <p class="commenttext">{{all.commen}}</p>
-                    </el-col>
-                </el-row>
-                <hr>
-             </div>
-             <div v-else>这里空空如也！快来抢占沙发吧！</div>
+                    <el-row>
+                        <el-col :span="4">
+                            <p style="width:60px;text-align:center">{{all.commentator}}</p>
+                            <img width="60px" height="60px" style="border-radius:50%" v-bind:src="all.header" alt="">
+                            <p style="width:60px;text-align:center;font-size:9px">{{new Date(all.daten).toLocaleString()}}</p>
+                        </el-col>
+                        <el-col :span="20" class="commentbox">
+                            <p class="commenttext">
+                                <b v-if="all.respondent!='0'">回复：{{all.respondent}}</b>
+                                {{all.commen}}
+                            </p>
+                            <i @click="reply(all.commentator)" class="el-icon-edit"></i>
+                        </el-col>
+                    </el-row>
+                    <hr>
+                </div>
+                <div v-else>这里空空如也！快来抢占沙发吧！</div>
             </div>
 
             <el-form title="评论详情" :model="formcomment" :rules="rules" ref="formcomment" label-width="80px" class="demo-ruleForm">
                 <el-form-item label="我的看法" prop="desc">
-                    <el-input type="textarea" rows="2" v-model="formcomment.comment"></el-input>
+                    <el-input   type="textarea" rows="2" v-model="formcomment.comment"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button @click="commented" type="primary">发表评论</el-button>
                     <el-button @click="open = false">取消</el-button>
                 </el-form-item>
             </el-form>
-        </el-di
-        alog>
+            </el-di alog>
     </div>
 
 
@@ -178,14 +173,14 @@
                 if ($('.bgone').css('opacity') == 0) {
                     $('.bgone').animate({
                         'opacity': '1'
-                    }, 300);
+                    }, 200);
                 }
             }
-            if ($('#main').scrollTop() < 200) {
+            if ($('#main').scrollTop() < 150) {
                 if ($('.bgone').css('opacity') == 1) {
                     $('.bgone').animate({
                         'opacity': '0'
-                    }, 300);
+                    }, 200);
                 }
             }
         })
@@ -195,19 +190,24 @@
             isCollapse: true,
             dialogVisible: false,
             open: false,
-            commen:{
-                username:'',
-                time:'',
-                mainpic:'',
-                content:'',
-                comall:''
+            commen: {
+                username: '',
+                time: '',
+                mainpic: '',
+                content: '',
+                comall: ''
             },
             formcomment: {
                 comment: '',
-                fid2:''
+                fid2: ''
             },
-            fidd:{
-                fid:''
+            repay:{
+                value:'',
+                fid3:'',
+                wid:''
+            },
+            fidd: {
+                fid: ''
             },
             form: {
                 desc: '',
@@ -222,32 +222,74 @@
             }
         },
         methods: {
-            openwindow:function(e){
-                this.open=true;
-                this.fidd.fid= e.target.getAttribute('value')
+            openwindow: function (e) {
+                this.open = true;
+                this.fidd.fid = e
                 axios({
-                    method:'post',
-                    url:'/index/comment',
-                    data:Qs.stringify(this.fidd)                   
-                }).then(response=>{
-                    this.commen.username=response.data.data[0].username;
-                    this.commen.time=response.data.data[0].times;
-                    this.commen.mainpic=response.data.data[0].mainpic;
-                    this.commen.content=response.data.data[0].content;
-                    this.commen.comall=response.data.data
+                    method: 'post',
+                    url: '/index/comment',
+                    data: Qs.stringify(this.fidd)
+                }).then(response => {
+                    this.commen.username = response.data.data[0].username;
+                    this.commen.time = response.data.data[0].times;
+                    this.commen.mainpic = response.data.data[0].mainpic;
+                    this.commen.content = response.data.data[0].content;
+                    this.commen.comall = response.data.data
                 }).catch(response => {
                     console.log("fail...")
                 })
             },
-            commented:function(){
-                if(!this.formcomment.comment){
+            reply: function (e) {
+                this.$prompt('请输入回复内容', '回复', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    inputPattern: /^.{5,30}$/,
+                    inputErrorMessage: '请输入最少5个最多30字符'
+                }).then(({value}) => {
+                    this.repay.value=value;
+                    this.repay.fid3=this.fidd.fid;
+                    this.repay.wid=e;
+                    axios({
+                        method:'post',
+                        url:'/index/reply',
+                        data:Qs.stringify(this.repay)
+                    }).then(response => {
+                        if (response.data.r == 'notlogin') {
+                        this.$confirm('请登录后在发表回复！！', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                            window.location.href = "/login"
+                        })
+                        return;
+                    }
+                    if (response.data.r == "ok") {
+                        this.commen.comall = response.data.data;
+                        this.$message({
+                        type: 'success',
+                        message: '回复成功！'
+                    });
+                    }                                  
+                }).catch(response => {
+                    console.log("fail...")
+                })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消回复'
+                    });
+                });
+            },
+            commented: function () {
+                if (!this.formcomment.comment) {
                     this.$message.error('请输入内容');
                     return;
                 }
-                this.formcomment.fid2=this.fidd.fid;
+                this.formcomment.fid2 = this.fidd.fid;
                 axios({
-                    method:'post',
-                    url:'/index/commented',
+                    method: 'post',
+                    url: '/index/commented',
                     data: Qs.stringify(this.formcomment)
                 }).then(response => {
                     if (response.data.r == 'notlogin') {
@@ -259,12 +301,12 @@
                             window.location.href = "/login"
                         })
                         return;
-                    }      
+                    }
                     console.log("sucess...");
-                    if(response.data.r=="ok"){
-                        this.commen.comall=response.data.data;
-                        this.$refs.formcomment.resetFields(); 
-                        this.formcomment.comment=''       
+                    if (response.data.r == "ok") {
+                        this.commen.comall = response.data.data;
+                        this.$refs.formcomment.resetFields();
+                        this.formcomment.comment = ''
                     }
                 }).catch(response => {
                     console.log("fail...")
@@ -323,7 +365,14 @@
                 return isJPG && isLt2M;
             }
 
-        }
+        },
+        mounted:function(){
+            if(window.localStorage.fid){
+                this.openwindow(window.localStorage.fid);
+                localStorage.removeItem('fid')
+            }
+            }
+
     }).$mount('#app')
 </script>
 

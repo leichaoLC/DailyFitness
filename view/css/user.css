@@ -101,3 +101,16 @@ body{
     opacity: 1;
     transition:opacity 1s; 
 }
+.textcom{
+    min-height: 37px;
+    height: 37px;
+    width: 80%;
+    display: inline-block;
+}
+.savecom{
+    float: right;
+    margin-right: 30px
+}
+.abq{
+  text-decoration: none
+}

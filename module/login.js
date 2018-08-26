@@ -30,6 +30,7 @@ module.exports=function(){
             req.session.uid = result[0].uid;
             req.session.username = result[0].username;
             req.session.header =result[0].header;
+            req.session.replynum =result[0].replynum;
             //更新登录信息
             let upsql = `UPDATE user SET logintime = ? WHERE uid = ? LIMIT 1`;
             mydb.query(upsql, [new Date().toLocaleString(), result[0].uid], (err, r)=>{

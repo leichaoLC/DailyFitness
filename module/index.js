@@ -44,7 +44,7 @@ module.exports=function(){
         }) 
     });
     router.post('/commented',(req,res)=>{
-        let sql=`INSERT INTO comments(fid,commen,daten,uid,commentator) VALUES(?,?,?,?,?) `;
+        let sql=` INSERT INTO comments(fid,commen,daten,uid,commentator) VALUES(?,?,?,?,?) `;
         if(!req.session.uid){
             res.json({r:'notlogin'})
             return;
@@ -66,6 +66,32 @@ module.exports=function(){
             }
 
         });
-    })
+    });
+    router.post('/reply',(req,res)=>{
+        let sql=` INSERT INTO comments(fid,commen,daten,uid,commentator,respondent) VALUES(?,?,?,?,?,?) `;
+        if(!req.session.uid){
+            res.json({r:'notlogin'})
+            return;
+        };
+        mydb.query(sql,[req.body.fid3,req.body.value,new Date().toLocaleString(),req.session.uid,req.session.username,req.body.wid],(err,result)=>{
+            if(err){
+                res.json({r:'dberr'});
+                console.log(err)
+            }else{
+                let sql=` SELECT comments.*,user.header FROM comments LEFT JOIN user ON comments.uid=user.uid  WHERE comments.fid=? `;
+                mydb.query(sql,req.body.fid3,(err,result)=>{
+                    if(err){
+                        res.json({r:'dberr'});
+                        console.log(err)
+                    }else{
+                        let sql1=` UPDATE user SET replynum =replynum+1  WHERE username = ? LIMIT 1`;
+                        mydb.query(sql1,req.body.wid,(err,rt)=>{
+                            res.json({data:result,r:'ok'});
+                        })
+                    }
+                })
+            }
+        });
+    });
     return router;
 }

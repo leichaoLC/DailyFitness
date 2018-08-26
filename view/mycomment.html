@@ -1,0 +1,84 @@
+<% include top.html %>
+<div class="main">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col>
+            <col width="200">
+            <col width="200">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>评论发现</th>
+                <th>评论内容</th>
+                <th>评论时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let r of result)
+                {%>
+                <tr>
+                    <td><%=r.fid%></td>
+                    <td><span class="word"><%=r.commen%></span><span class="kuai hide"><textarea class="layui-textarea textcom"><%=r.commen%></textarea><button value="<%=r.wid%>" class="layui-btn layui-btn-normal savecom">保存</button></span></td>
+                    <td><%=new Date(r.daten).toLocaleString()%></td>
+                    <td><button value="<%=r.wid%>" class="layui-btn layui-btn-normal delcommen">删除</button><button class="layui-btn layui-btn-normal modify">修改</button></td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+</div>
+    <% include bottom.html %>
+        <script>
+            $('.modify').click(function(){
+                var This=$(this).parent().prev().prev();
+                This.parent().siblings().children().children(".kuai").addClass('hide');
+                This.parent().siblings().children().children(".word").removeClass('hide');
+                This.children(".kuai").removeClass('hide');
+                This.children('.textcom').html()
+                This.children(".word").addClass("hide")
+            });
+            $('.delcommen').click(function(){
+                if(!confirm('确认删除这条评论吗？')){
+            return;
+                  }
+            $.ajax({
+            url:'/user/delcommen',
+            dataType:'JSON',
+            type:'POST',
+            data:{wid:$(this).val()},
+            success:function(result){
+                if(result.r=='delsuccess'){
+                    window.location.reload()
+                }
+             }
+             })    
+            })
+            $('.savecom').click(function(){
+                let comment= $(this).prev().val();
+                if(comment==$(this).parent().prev().html()){
+                $(this).parent().prev().removeClass('hide');
+                $(this).parent().addClass('hide');
+                alert("未更改")
+                return;
+                }
+                if(!comment){
+                    alert("请输入内容!")
+                    return;
+                }
+                $.ajax({
+                 url:'/user/xgcommen',
+                 dataType:'JSON',
+                 type:'POST',
+                 data:{comment:comment,
+                wid:$(this).val()},
+                 success:function(result){
+                     if(result.r=="ok"){
+                         window.location.reload()
+                     }
+
+                 } 
+                })
+                
+            })      
+        </script>

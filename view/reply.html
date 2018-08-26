@@ -1,0 +1,38 @@
+<% include top.html %>
+<div class="main">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col>
+            <col width="200">
+            <col width="200">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>回复者</th>
+                <th>回复内容</th>
+                <th>回复时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let d of data)
+                {%>
+                <tr>
+                    <td><%=d.commentator%></td>
+                    <td><%=d.commen%></td>
+                    <td><%=new Date(d.daten).toLocaleString()%></td>
+                    <td><button value="<%=d.fid%>" class="layui-btn savelocal">点击跳转</button></td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+</div>
+    <% include bottom.html %>
+        <script>
+            $('.layui-badge').hide('slow');
+            $('.savelocal').click(function(){
+                window.localStorage.setItem("fid",$(this).val());
+                window.location.href="/index/find"            
+            })
+        </script>
