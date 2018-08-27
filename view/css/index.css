@@ -126,7 +126,9 @@ position: relative
     width: 350px;
     margin: 50px auto;
     text-align: left;
-    background-color: aqua
+    background-color: aqua;
+    animation-duration: 2s;
+    /* animation-delay: .8s */
 }
 
 .index-details-course a{
@@ -264,6 +266,11 @@ tr{
 
 .animation-time{
     animation-duration: 1.5s;
+}
+
+#index-one-img{
+    animation-duration: 6s;
+    /* animation-delay: 1s */
 }
 
 .index-three-share:nth-child(1){
