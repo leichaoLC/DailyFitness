@@ -10,6 +10,7 @@ const session = require('express-session');
 const multer = require('multer');
 const server = express();
 const path = require('path');
+global.async = require('async');
 
 //图片上传的相关配置
 var diskstorage = multer.diskStorage({

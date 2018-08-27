@@ -56,95 +56,241 @@
         <!-- 侧边导航栏 -->
         <div class="navigation">
             <div class="seek">
-                <input type="text" placeholder="动作库">
-                <button>
+                <input type="text" v-model="fenye.action" placeholder="动作库">
+                <button @click="search" type="button" style="cursor: pointer">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
             </div>
             <!-- 分类 -->
             <div class="classify-equipment">
                 <p>器材</p>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
+                <%for(let q of qclist){%>
+                    <div class="detailed-equipment">
+                        <a href="javascript:;" @click="qcname('<%=q.name%>')">
+                            <%=q.name%>
+                        </a>
+                    </div>
+                    <%}%>
             </div>
             <div class="classify-equipment">
                 <p>目的</p>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
+                <%for(let m of mdlist){%>
+                    <div class="detailed-equipment">
+                        <a href="javascript:;" @click="mdname('<%=m.ename%>')">
+                            <%=m.ename%>
+                        </a>
+                    </div>
+                    <%}%>
             </div>
             <div class="classify-equipment">
                 <p>部位</p>
-                <div class="detailed-equipment">
-                    <a href="">哑铃</a>
-                </div>
+                <%for(let b of bwlist){%>
+                    <div class="detailed-equipment">
+                        <a href="javascript:;" @click="bwname('<%=b.pname%>')">
+                            <%=b.pname%>
+                        </a>
+                    </div>
+                    <%}%>
             </div>
         </div>
 
         <!-- 课程内容 -->
         <div class="particulars">
-            <div class="class-diagram">
-                <img src="http://www.jianshen8.com/uploads/allimg/170614/4_170614172320_2.gif" alt="">
-                <p>111</p>
-                <p><span>健身</span><span>123</span></p>
+                <h2 >{{tillte}}</h2>
+                <hr>
+            <div v-for="all in alllist" class="class-diagram">
+                <a :href="'/index/coursedetails?cid='+all.cid">                 
+                <img v-bind:src="all.imgpath" alt="">
+                <p>{{all.name}}</p>
+                <p>
+                    <span>{{all.equipment}}</span>
+                    <span>{{all.effect}}</span>
+                    <span>{{all.position}}</span>
+                </p>
+            </a>  
             </div>
-            <div class="class-diagram">
-                <img src="http://www.jianshen8.com/uploads/allimg/170614/4_170614172320_2.gif" alt="">
-                <p>111</p>
-                <p><span>健身</span><span>123</span></p>
-            </div>
-            <div class="class-diagram">
-                <img src="http://www.jianshen8.com/uploads/allimg/170614/4_170614172320_2.gif" alt="">
-                <p>111</p>
-                <p><span>健身</span><span>123</span></p>
-            </div>
-            <div class="class-diagram">
-                <img src="http://www.jianshen8.com/uploads/allimg/170614/4_170614172320_2.gif" alt="">
-                <p>111</p>
-                <p><span>健身</span><span>123</span></p>
-            </div>
-            <div class="class-diagram">
-                <img src="http://www.jianshen8.com/uploads/allimg/170614/4_170614172320_2.gif" alt="">
-                <p>111</p>
-                <p><span>健身</span><span>123</span></p>
-            </div>
+            
             <div class="clear"></div>
+        </div>
+        <div class="block">
+            <el-pagination @current-change="handleCurrentChange"  :current-page="fenye.currentPage" :page-size="1" layout="total,prev,pager,next,jumper" :total="fenye.allcount">
+            </el-pagination>
         </div>
     </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
 <script>
     new Vue({
         el: '#app',
-        data: function () {
-            return {
-                visible: false,
-                labelPosition: 'top',
-                formLabelAlign: {
-                    username: '',
-                    passwd: '',
-                    tel: '',
-                    email: ''
-                }
+        data: {
+            visible: false,
+            labelPosition: 'top',
+            fenye: {
+                currentPage: 1,
+                allcount: '',
+                name: '',
+                bname: '',
+                mname: '',
+                action:''
+            },
+            tillte:'',
+            alllist: [],
+            qc: {
+                name: '',
+                currentPage: 1,
+            },
+            bw: {
+                bname: '',
+                currentPage: 1,
+            },
+            md: {
+                mname: '',
+                currentPage: 1,
+            },
+            formLabelAlign: {
+                username: '',
+                passwd: '',
+                tel: '',
+                email: ''
             }
+        },
+        methods: {
+            qcname: function (e) {
+                this.qc.name = e;
+                this.fenye.name = e;
+                this.fenye.bname = ''
+                this.fenye.mname = ''
+                this.fenye.action = ''
+            },
+            mdname: function (e) {
+                this.md.mname = e
+                this.fenye.mname = e
+                this.fenye.bname = ''
+                this.fenye.name = ''
+                this.fenye.action = ''
+            },
+            bwname: function (e) {
+                this.bw.bname = e;
+                this.fenye.bname = e
+                this.fenye.mname = ''
+                this.fenye.name = ''
+                this.fenye.action = ''
+            },
+            handleCurrentChange(val) {
+                this.fenye.currentPage = val
+            },
+            search:function(){
+                if(!this.fenye.action){
+                    this.$message.warning('请输入搜索内容');
+                    return;
+                }
+                this.fenye.bname = ''
+                this.fenye.mname = ''
+                this.fenye.name = ''
+                this.fenye.currentPage =1
+                axios({
+                    method: "post",
+                    url: "/index/allcourse",
+                    data: Qs.stringify(this.fenye)
+                }).then(response => {
+                    this.alllist = response.data.result;
+                    this.tillte=response.data.tillte
+                    console.log("sucess...");
+                }).catch(response => {
+                    console.log("fail...")
+                })
+            }
+        },
+        computed: {　　
+            pokerHistory() {　　　　
+                return this.fenye.currentPage　　
+            }
+        },
+        watch: {　
+            pokerHistory(newValue, oldValue) {　　　　
+                axios({
+                    method: "post",
+                    url: "/index/allcourse",
+                    data: Qs.stringify(this.fenye)
+                }).then(response => {
+                    this.alllist = response.data.result;
+                    this.tillte=response.data.tillte
+                    console.log("sucess...");
+                }).catch(response => {
+                    console.log("fail...")
+                })　　　
+            },
+            qc: {
+                handler(newValue, oldValue) {　　　　　　
+                    axios({
+                        method: "post",
+                        url: "/index/allcourse",
+                        data: Qs.stringify(this.qc)
+                    }).then(response => {
+                        this.alllist = response.data.result;
+                        this.fenye.allcount = response.data.allcount
+                        this.tillte=response.data.tillte
+                        console.log("sucess...");
+                    }).catch(response => {
+                        console.log("fail...")
+                    })　　　　
+                },
+                deep: true
+            },
+            bw: {
+                handler(newValue, oldValue) {　　　　　　
+                    axios({
+                        method: "post",
+                        url: "/index/allcourse",
+                        data: Qs.stringify(this.bw)
+                    }).then(response => {
+                        this.alllist = response.data.result;
+                        this.fenye.allcount = response.data.allcount
+                        this.tillte=response.data.tillte
+                        console.log("sucess...");
+                    }).catch(response => {
+                        console.log("fail...")
+                    })　　　　
+                },
+                deep: true
+            },
+            md: {
+                handler(newValue, oldValue) {　　　　　　
+                    axios({
+                        method: "post",
+                        url: "/index/allcourse",
+                        data: Qs.stringify(this.md)
+                    }).then(response => {
+                        this.alllist = response.data.result;
+                        this.fenye.allcount = response.data.allcount;
+                        this.tillte=response.data.tillte
+                        console.log("sucess...");
+                    }).catch(response => {
+                        console.log("fail...")
+                    })　　　　
+                },
+                deep: true
+            }
+        },
+        mounted: function () {
+            axios({
+                method: "post",
+                url: "/index/allcourse",
+                data: Qs.stringify(this.fenye)
+            }).then(response => {
+                this.alllist = response.data.result;
+                this.fenye.allcount = response.data.allcount;
+                this.tillte=response.data.tillte
+                console.log("sucess...");
+            }).catch(response => {
+                console.log("fail...")
+            })
+
         }
+
     })
 </script>
 

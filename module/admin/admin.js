@@ -1,4 +1,3 @@
-const async = require('async');
 module.exports=function(){
     let router=express.Router();
     //管理员页面

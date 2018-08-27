@@ -21,7 +21,8 @@
     height: 400px;
     margin: 0 360px;
     /* background-color: aqua; */
-    text-align: center
+    text-align: center;
+    
 }
 
 .index-headline h1{
@@ -320,4 +321,7 @@ tr{
 
 .idnex-two-bg:nth-child(3){
     background-image: url(../images/index-one6.webp)
+}
+.el-pagination__total{
+    margin-left: 440px
 }

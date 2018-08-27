@@ -1,16 +1,103 @@
 module.exports=function(){
     let router=express.Router();
     router.get('/coursedetails',(req,res)=>{
-        let sql=` select * from course where cid=2 limit 1 `;
-        mydb.query(sql,(err,result)=>{
+        let sql=` select * from course where cid=? limit 1 `;
+        mydb.query(sql,req.query.cid,(err,result)=>{
             res.render('coursedetails',{
                 result:result[0]
             })
         });
     });
     router.get('/courseoutline',(req,res)=>{
-        res.render('courseoutline')
+        let q=req.query;
+        let sql=` SELECT * FROM equipment `
+        if(q.qcname){
+
+        }
+        async.series({
+            qclist:function (cb) {
+                //器材
+                let sql = ' SELECT * FROM equipment ';
+                mydb.query(sql, (err, results)=>{
+                    cb(null, results);
+                });
+            },
+            mdlist:function (cb) {
+                //目的
+                let sql = ` SELECT * FROM effect `;
+                mydb.query(sql, (err, result)=>{
+                    cb(null, result);
+                });
+            },
+            bwlist:function (cb) {
+                //部位
+                let sql = ` SELECT * FROM positions `
+                mydb.query(sql, (err, result)=>{
+                    cb(null, result);
+                });
+            }
+        },(err, results)=>{
+            res.render('courseoutline',{
+                qclist:results.qclist,
+                mdlist:results.mdlist,
+                bwlist:results.bwlist,
+            });
+        });
     });
+    router.post('/allcourse',(req,res)=>{
+            //所有
+            let q=req.body;
+            let page=q.currentPage;
+            let pagenum=1
+            let sql=` SELECT * FROM course `;
+            let pd;
+            let tillte;
+            if(q.name){
+                sql+=` WHERE equipment=? `
+                pd=q.name
+                tillte=q.name+"分类"
+            }
+            if(q.bname){
+                sql+=` WHERE position=? `
+                pd=q.bname
+                tillte=q.bname+"分类"
+            }
+            if(q.mname){
+                sql+=` WHERE effect=? `
+                pd=q.mname;
+                tillte=q.mname+"分类" 
+            }
+            if(q.action){
+                sql+=` WHERE concat(name,equipment,effect,position) LIKE '%${q.action}%' `;
+                tillte="搜索"+q.action+"结果为:"
+            }
+            mydb.query(sql,pd,(err, result)=>{
+                let imgreg=/src=[\'\"]?([^\'\"]*\.gif)[\'\"]?/i; 
+                for(let i=0;i<result.length;i++){
+                    let r = imgreg.exec(result[i].process); 
+                    if(r[1]){
+                        result[i].imgpath = r[1];
+                    }             
+                }
+                let kwlist=[];
+                //查询当前页数应该显示的记录
+                let index=0;
+                for(let i=(page-1)*pagenum;i<(page-1)*pagenum+pagenum;i++){
+                    if(result[i]){
+                    kwlist[index]=result[i];
+                    index++;
+                }
+                }
+                let allcount=result.length;
+                res.json({result:kwlist,
+                    allcount:allcount,
+                    tillte:tillte
+                })
+            });
+        
+
+    });
+
     router.get('/find',(req,res)=>{
         let sql=` select * from find `;
         mydb.query(sql,(err,result)=>{
