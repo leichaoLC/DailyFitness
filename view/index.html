@@ -68,23 +68,23 @@
                     <p class="plan-p-one">多种健身方式供您选择</p>
                     <p class="plan-p-two">包含有氧操，塑性操，心肺激活，瑜伽，燃脂等多种训练计划供您选择</p>
                 </div>
-                <div class="index-one-details animation-time"  id="index-one-details-one">
+                <div class="index-one-details animation-time" id="index-one-details-one">
                     <div class="index-details">
-                        <div class="index-details-course idnex-one-bg">
+                        <div class="index-details-course index-details-left idnex-one-bg" id="course-of-animation">
                             <a href="">
                                 <div class="index-one-content">
                                     <span>HIIT间歇训练</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="index-details-course idnex-one-bg">
+                        <div class="index-details-course index-details-left idnex-one-bg">
                             <a href="">
                                 <div class="index-one-content">
                                     <span>力量</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="index-details-course idnex-one-bg">
+                        <div class="index-details-course index-details-left idnex-one-bg">
                             <a href="">
                                 <div class="index-one-content">
                                     <span>有氧运动</span>
@@ -92,25 +92,25 @@
                             </a>
                         </div>
                     </div>
-                    <div class="index-details">
+                    <div class="index-details" id="index-one-img">
                         <img src="images/course.png" alt="">
                     </div>
                     <div class="index-details">
-                        <div class="index-details-course idnex-two-bg">
+                        <div class="index-details-course index-details-right idnex-two-bg">
                             <a href="">
                                 <div class="index-one-content">
                                     <span>增肌</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="index-details-course idnex-two-bg">
+                        <div class="index-details-course index-details-right idnex-two-bg">
                             <a href="">
                                 <div class="index-one-content">
                                     <span>核心力量训练</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="index-details-course idnex-two-bg">
+                        <div class="index-details-course index-details-right idnex-two-bg">
                             <a href="">
                                 <div class="index-one-content">
                                     <span>减肥</span>
@@ -127,7 +127,7 @@
                     <p class="plan-p-two">三分练，七分吃，在合理训练的前提下，精确的热量计算食谱保证身体朝着自己希望的方向发展。</p>
                 </div>
                 <div class="index-one-details animation-time" id="index-one-details-two">
-                    <div class="index-details">
+                    <div class="index-details index-two-introduce-one">
                         <div class="index-two-eggimg">
                             <img src="images/egg.png" alt="">
                         </div>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
 
-                    <div class="index-details">
+                    <div class="index-details index-two-introduce-two">
                         <p class="two-title">鸡蛋</p>
                         <table>
                             <tr>
@@ -187,7 +187,7 @@
                         <p class="two-way-two">&nbsp;&nbsp;用平底锅，倒入一点豆油或其他植物油，一元硬币大小就够了，把油在锅底摇匀，稍稍加热，打入一枚鸡蛋，煎一小会儿，翻面，喜欢糖心的不用动，不喜欢的用铲子稍稍压一下，把蛋黄压破，不然蛋黄很难煎熟，两面都煎好了出锅，在表面洒一点点盐。</p>
                     </div>
 
-                    <div class="index-details">
+                    <div class="index-details index-two-introduce-three">
                         <div class="index-two-eggimg">
                             <img src="images/egg.png" alt="">
                         </div>
@@ -268,12 +268,12 @@
                 // 浏览器可视区域高度
                 const documentClientHeight = document.documentElement.clientHeight;
                 console.log(documentClientHeight);
-                
+
                 const indexOnePlanOne = document.getElementById('index-one-plan-one');
                 const indexOnePlanOneTop = indexOnePlanOne.getBoundingClientRect().top;
                 if (documentClientHeight > indexOnePlanOneTop) {
-                     indexOnePlanOne.classList.add("animated", "fadeInUp")
-                } 
+                    indexOnePlanOne.classList.add("animated", "fadeInUp")
+                }
 
                 const indexOneDetailsOne = document.getElementById('index-one-details-one');
                 const indexOneDetailsOneTop = indexOneDetailsOne.getBoundingClientRect().top;
@@ -284,26 +284,48 @@
                 const indexOnePlanTwo = document.getElementById('index-one-plan-two');
                 const indexOnePlanTwoTop = indexOnePlanTwo.getBoundingClientRect().top;
                 if (documentClientHeight > indexOnePlanTwoTop) {
-                     indexOnePlanTwo.classList.add("animated", "fadeInUp")
-                } 
+                    indexOnePlanTwo.classList.add("animated", "fadeInUp")
+                }
 
                 const indexOneDetailsTwo = document.getElementById('index-one-details-two');
                 const indexOneDetailsTwoTop = indexOneDetailsTwo.getBoundingClientRect().top;
                 if (documentClientHeight > indexOneDetailsTwoTop) {
-                indexOneDetailsTwo.classList.add("animated", "fadeInUp")
+                    indexOneDetailsTwo.classList.add("animated", "fadeInUp")
                 }
 
                 const indexOnePlanThree = document.getElementById('index-one-plan-three');
                 const indexOnePlanThreeTop = indexOnePlanThree.getBoundingClientRect().top;
                 if (documentClientHeight > indexOnePlanThreeTop) {
-                     indexOnePlanThree.classList.add("animated", "fadeInUp")
-                } 
+                    indexOnePlanThree.classList.add("animated", "fadeInUp")
+                }
 
                 const indexOneDetailsThree = document.getElementById('index-one-details-three');
                 const indexOneDetailsThreeTop = indexOneDetailsThree.getBoundingClientRect().top;
                 if (documentClientHeight > indexOneDetailsThreeTop) {
-                indexOneDetailsThree.classList.add("animated", "fadeInUp")
+                    indexOneDetailsThree.classList.add("animated", "fadeInUp")
                 }
+
+                const courseOfAnimation = document.getElementById('course-of-animation');
+                const courseOfAnimationTop = courseOfAnimation.getBoundingClientRect().top;
+                const indexDetailsLeft = document.getElementsByClassName('index-details-left');
+                const indexDetailsRight = document.getElementsByClassName('index-details-right');
+                if (documentClientHeight > courseOfAnimationTop) {
+                    for (let i = 0; i < indexDetailsLeft.length; i++) {
+                        indexDetailsLeft[i].classList.add("animated", "fadeInLeft");
+                    }
+                    for (let j = 0; j < indexDetailsRight.length; j++) {
+                        indexDetailsRight[j].classList.add("animated", "fadeInRight");
+                        
+                    }
+                }
+
+                const indexOneImg = document.getElementById('index-one-img');
+                const indexOneImgTop = indexOneImg.getBoundingClientRect().top;
+                if (documentClientHeight > indexOneImgTop) {
+                    indexOneImg.classList.add("animated", "fadeIn")
+                }
+
+
             }
         },
         methods: {}
