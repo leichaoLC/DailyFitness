@@ -48,7 +48,7 @@ module.exports=function(){
             //所有
             let q=req.body;
             let page=q.currentPage;
-            let pagenum=1
+            let pagenum=8
             let sql=` SELECT * FROM course `;
             let pd;
             let tillte;

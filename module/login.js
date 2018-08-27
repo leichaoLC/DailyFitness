@@ -15,7 +15,7 @@ module.exports=function(){
                 res.json({r:'username_not_exist'});
                 return;
             }
-            if(result[0].statu){
+            if(result[0].statu){ 
                 res.json({
                     r:'username_prohibit'
                 })

@@ -120,7 +120,6 @@
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="/js/coursedetails.js"></script>
 <script>
     new Vue({
         el: '#app',
@@ -128,20 +127,24 @@
             return {
                 visible: false,
                 labelPosition: 'top',
-                isActive:true,
+                isActive: true,
                 formLabelAlign: {
                     username: '',
                     passwd: '',
                     tel: '',
                     email: '',
-                    
-                    
+
+
                 }
             }
         },
-        methods:{
-            dj:function(){
-                this.isActive  = !this.isActive;
+        methods: {
+            dj: function () {
+                this.isActive = !this.isActive;
+                this.$message({
+                    message: '恭喜你，这是一条成功消息',
+                    type: 'success'
+                });
             },
         }
     })
