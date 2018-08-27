@@ -56,10 +56,15 @@
                 <a href="javascript:;">评论管理</a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a id="add" href="">我的评论</a>
+
+                        <a id="add" href="/user/mycomment">我的评论</a>                   
                     </dd>
                     <dd>
-                        <a id="add" href="">他人回复</a>
+                        <a id="add" href="/user/reply">他人回复
+                            <%if(replynum){%>
+                            <span class="layui-badge"><%=replynum%></span>
+                            <%}%>
+                        </a>
                     </dd>
                 </dl>
             </li>

@@ -182,6 +182,7 @@
   .commentbox{
       display: flex;
       justify-content: center;
+      height:inherit
   }
   .commenttext{
       width: 95%;
@@ -192,4 +193,11 @@
   }
   .footerfont{
       font-size: 14px
+  }
+  .el-icon-edit{
+      margin-top: 10px;
+  }
+  .el-icon-edit:hover{
+      color: rgb(21, 148, 233);
+      cursor: pointer
   }

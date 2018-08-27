@@ -20,7 +20,8 @@ module.exports=function(){
             res.render('user',{
                 result:result[0],
                 username:req.session.username,
-                header:req.session.header
+                header:req.session.header,
+                replynum:req.session.replynum
             }) 
         });
     });
@@ -30,7 +31,8 @@ module.exports=function(){
             res.render('information',{
                 result:result[0],
                 username:req.session.username,
-                header:req.session.header
+                header:req.session.header,
+                replynum:req.session.replynum
             });
         });
 
@@ -58,7 +60,8 @@ module.exports=function(){
     router.get('/plan',(req,res)=>{
         res.render('plan',{
             username:req.session.username,
-            header:req.session.header
+            header:req.session.header,
+            replynum:req.session.replynum
         })
     });
     router.get('/collection',(req,res)=>{
@@ -74,7 +77,8 @@ module.exports=function(){
             res.render('collection',{
                 result:result,
                 username:req.session.username,
-                header:req.session.header
+                header:req.session.header,
+                replynum:req.session.replynum
             })
         }); 
     });
@@ -90,7 +94,60 @@ module.exports=function(){
             }
             
         })
-    })
+    });
+    router.get('/reply',(req,res)=>{
+        let sql=` UPDATE user SET replynum =0  WHERE uid = ? LIMIT 1 `;
+        mydb.query(sql,req.session.uid,(err,result)=>{
+            if(err){
+                res.json({r:'err'})
+                console.log(err)
+            }else{
+                let sql1=` SELECT * FROM comments WHERE respondent=? ORDER BY wid DESC`;
+                mydb.query(sql1,req.session.username,(err,data)=>{
+                    res.render('reply',{
+                        data:data,
+                        username:req.session.username,
+                        header:req.session.header,
+                        replynum:req.session.replynum
+                    })  
+                }); 
+            }
+        }); 
+    });
+    router.get('/mycomment',(req,res)=>{
+        let sql=` SELECT * FROM comments WHERE uid=? ORDER BY wid DESC`;
+        mydb.query(sql,req.session.uid,(err,result)=>{
+            res.render('mycomment',{
+                result:result,
+                username:req.session.username,
+                header:req.session.header,
+                replynum:req.session.replynum
+            })
+        })
+    });
+    router.post('/delcommen',(req,res)=>{
+        sql=` DELETE  FROM  comments  WHERE  wid=? `
+        mydb.query(sql,req.body.wid,(err,result)=>{
+            if(err){
+                console.log(err)
+                res.json({r:'err'})
+            }else{
+                res.json({r:'delsuccess'})
+            }        
+        })
+    });
+    router.post('/xgcommen',(req,res)=>{
+        console.log(1111111)
+        sql=` UPDATE comments SET commen =?  WHERE wid = ? LIMIT 1 `
+        mydb.query(sql,[req.body.comment,req.body.wid],(err,result)=>{
+            if(err){
+                console.log(err)
+                res.json({r:'err'})
+            }else{
+                res.json({r:'ok'})
+            }        
+        })
+    });
 
     return router;
 };

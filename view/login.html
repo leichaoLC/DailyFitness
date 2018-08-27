@@ -13,7 +13,7 @@
 <body>
     <div id="app">
 
-        <video autoplay loop="loop">
+        <video autoplay muted playsinline loop="loop">
             <source src="/images/5s.mp4" type="video/mp4">
         </video>
         <!-- 头部导航内容 -->
@@ -62,7 +62,6 @@
                     </el-form-item>
                     <el-form-item label="密码" class="label-c">
                         <el-input v-model="formLabelAlign.passwd" type="password" class="input-w"></el-input>
-                        <span id="passwd" class="err">密码错误</span>
                     </el-form-item>
                     <div class="flip">
                         <span @click="login">
