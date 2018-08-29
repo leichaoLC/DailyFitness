@@ -3,17 +3,17 @@ module.exports=function(){
     router.get('/coursedetails',(req,res)=>{
         let sql=` select * from course where cid=? limit 1 `;
         mydb.query(sql,req.query.cid,(err,result)=>{
-            res.render('coursedetails',{
-                result:result[0]
-            })
+            let sql1=` select * from collection where cid=? AND uid=? limit 1 `;
+            mydb.query(sql1,[req.query.cid,req.session.uid],(err,data)=>{
+                res.render('coursedetails',{
+                    result:result[0],
+                    data:data[0]
+                })
+            });
         });
     });
     router.get('/courseoutline',(req,res)=>{
         let q=req.query;
-        let sql=` SELECT * FROM equipment `
-        if(q.qcname){
-
-        }
         async.series({
             qclist:function (cb) {
                 //器材
@@ -180,5 +180,47 @@ module.exports=function(){
             }
         });
     });
+
+    router.post('/collection',(req,res)=>{
+        let sql=` UPDATE course SET collnum = `
+        if(!req.session.uid){
+            res.json({r:'notlogin'})
+            return;
+        };
+        console.log(req.body)
+        if(req.body.isActive=='true'){
+            sql+=` collnum+1 `
+            let sql1=` INSERT INTO collection(uid,cid,times) VALUES(?,?,?) `;
+            mydb.query(sql1,[req.session.uid,req.body.cid,new Date().toLocaleString()],(err,result)=>{
+            
+            })
+        }else{
+            sql+= ` collnum-1 `
+            let sql1=` DELETE  FROM  collection  WHERE  uid=? and cid=? `;
+            mydb.query(sql1,[req.session.uid,req.body.cid],(err,result)=>{
+            
+            })
+        }
+        sql+=` WHERE cid = ? LIMIT 1 `
+        mydb.query(sql,req.body.cid,(err,result)=>{
+
+        })
+    })
+    router.post('/pdcollec',(req,res)=>{
+        let sql=` select * from collection where uid=? and cid=? `
+        if(!req.session.uid){
+            return;
+        };
+        mydb.query(sql,[req.session.uid,req.body.cid],(err,result)=>{
+            if(err){
+                console.log(err)
+                res.json({r:'dberr'})
+            }else{
+                if(result[0]){
+                    res.json({r:'ok'})
+                }            
+            }
+        })
+    })
     return router;
 }

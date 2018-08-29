@@ -104,6 +104,7 @@ module.exports=function(){
             }else{
                 let sql1=` SELECT * FROM comments WHERE respondent=? ORDER BY wid DESC`;
                 mydb.query(sql1,req.session.username,(err,data)=>{
+                    req.session.replynum=0
                     res.render('reply',{
                         data:data,
                         username:req.session.username,

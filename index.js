@@ -93,6 +93,8 @@ server.use('/user',require('./module/user')());
 server.use('/admin',require('./module/admin/admin')())
 //前端页面路由
 server.use('/index',require('./module/index')());
+//小程序路由
+server.use('/applet',require('./module/applet')())
 
 //静态资源托管
 server.use(express.static('view'));

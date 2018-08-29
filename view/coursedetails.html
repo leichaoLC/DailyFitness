@@ -94,8 +94,8 @@
                                 <li>添加时间：
                                     <%=result.time%>
                                 </li>
-                                <li id="collect" @click="dj">
-                                    <i :class="[{'fa-star-o':isActive, 'fa-star': !isActive}, 'fa'] " aria-hidden="true"></i>
+                                <li id="collect" @click="dj(<%=result.cid%>)">
+                                    <i :class="[{'fa-star':isActive, 'fa-star-o': !isActive}, 'fa'] " aria-hidden="true"></i><span>收藏次数：<%=result.collnum%></span>
                                 </li>
                             </ul>
                         </div>
@@ -120,6 +120,8 @@
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
 <script>
     new Vue({
         el: '#app',
@@ -127,26 +129,70 @@
             return {
                 visible: false,
                 labelPosition: 'top',
-                isActive: true,
-                formLabelAlign: {
-                    username: '',
-                    passwd: '',
-                    tel: '',
-                    email: '',
-
-
-                }
+                isActive: '',
+                pd:{
+                    isActive: false,
+                    cid:''
+                },            
             }
         },
         methods: {
-            dj: function () {
+            dj: function (e) {
                 this.isActive = !this.isActive;
-                this.$message({
-                    message: '恭喜你，这是一条成功消息',
+                this.pd.isActive=this.isActive;
+                console.log(this.pd.isActive)
+                this.pd.cid=e
+                axios({
+                    method: 'post',
+                    url: '/index/collection',
+                    data: Qs.stringify(this.pd)
+                }).then(response => {
+                    if (response.data.r == 'notlogin') {
+                        this.$confirm('请登录！！', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                            window.location.href = "/login"
+                        })
+                        this.isActive=false;
+                        return;
+                    }
+                    console.log("sucess...");
+                    if (response.data.r == "ok") {
+                        if(this.isActive){
+                    this.$message({
+                    message: '收藏成功',
                     type: 'success'
                 });
+                }else{
+                    this.$message({
+                    message: '取消收藏',
+                    type: 'warning'
+                });
+                }
+                    }
+                }).catch(response => {
+                    console.log("fail...")
+                })
             },
-        }
+        },
+        mounted:function(){
+            let cid=location.search.split('=')
+            this.pd.cid=cid[1]
+            axios({
+                    method: 'post',
+                    url: '/index/pdcollec',
+                    data: Qs.stringify(this.pd)
+                }).then(response => {
+                    if(response.data.r=='ok'){
+                        this.isActive=true;
+                    }
+                    console.log(response.data.r);
+                }).catch(response => {
+                    console.log("fail...")
+                })
+        },
     })
 </script>
 
