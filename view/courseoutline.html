@@ -63,6 +63,16 @@
             </div>
             <!-- 分类 -->
             <div class="classify-equipment">
+                <p>全部</p>
+                <%for(let q of qclist){%>
+                    <div class="detailed-equipment">
+                        <a href="javascript:;" @click="qcname('<%=q.name%>')">
+                            <%=q.name%>
+                        </a>
+                    </div>
+                    <%}%>
+            </div>
+            <div class="classify-equipment">
                 <p>器材</p>
                 <%for(let q of qclist){%>
                     <div class="detailed-equipment">

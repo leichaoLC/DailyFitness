@@ -11,7 +11,7 @@ html{
 /* 背景图填充 */
 .index-bg{
     height: 1000px;
-    width: 1920px;
+    /* width: 1920px; */
     position: fixed;
     background-image: url(../images/index.jpg);
     background-size:cover;
@@ -19,6 +19,7 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-position: center;
 }
 
 .index-headline{

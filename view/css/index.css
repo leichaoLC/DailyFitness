@@ -6,12 +6,13 @@
 /* 背景图填充 */
 .index-bg{
     height: 1000px;
-    width: 1920px;
-    position: fixed;
+    /* width: 1920px; */
+    position: absolute;
     background-image: url(../images/index.jpg);
-    background-size:cover;
+    background-position: center;
+    /* background-size:contain; */
     z-index: -1;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
 }
