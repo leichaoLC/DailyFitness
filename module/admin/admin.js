@@ -179,13 +179,26 @@ module.exports=function(){
                 })
             }
         },(err, results)=>{
-            res.render('admin/upcourse',{
+            res.render('admin/xgcourse',{
                 qclist:results.qclist,
                 mdlist:results.mdlist,
                 bwlist:results.bwlist,
                 course:results.course
             });
         });
+    })
+    router.post('/xgcourse',(req,res)=>{
+        let q=req.body;
+        console.log(q)
+        let sql=` UPDATE course SET equipment=?,effect=?,time=?,process=?,position=?,name=? WHERE cid =? LIMIT 1 `;
+        mydb.query(sql,[q.qcname,q.mdname,new Date().toLocaleString(),q.bzname,q.bwname,q.jcname,q.cid],(err,reslut)=>{
+            if(err){
+                res.json({r:'dberr'});
+                console.log(err)
+            }else{
+                res.json({r:'sucess'})
+            }
+        })
     })
     return router;
 }
