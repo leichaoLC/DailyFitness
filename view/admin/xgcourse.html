@@ -1,0 +1,79 @@
+<% include header.html %>
+<div class="main">
+    <div class="layui-row">
+        <div class="layui-col-xs10 layui-col-sm8 layui-col-md8">
+            <form class="layui-form formdata">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">教程名称</label>
+                    <div class="layui-input-block">
+                        <input id="jcname" type="text" name="jcname" required lay-verify="required" placeholder="请输入教程名称"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">器材名称</label>
+                    <div class="layui-input-inline">
+                        <select id="qcname" name="qcname" lay-verify="required">
+                            <option value=""></option>
+                            <option>无</option>
+                            <% for(let q of qclist)
+                                        {%>
+                            <option>
+                                <%=q.name%>
+                            </option>
+                            <%}%>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">没用器材选无</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">锻炼部位</label>
+                    <div class="layui-input-inline">
+                        <select id="bwname" name="bwname" lay-verify="required">
+                            <option value=""></option>
+                            <% for(let b of bwlist)
+                                        {%>
+                            <option <%=%>>
+                                <%=b.pname%>
+                            </option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">锻炼目的</label>
+                    <div class="layui-input-inline">
+                        <select id="mdname" name="mdname" lay-verify="required">
+                            <option value=""></option>
+                            <% for(let m of mdlist)
+                                        {%>
+                            <option>
+                                <%=m.ename%>
+                            </option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">练习步骤</label>
+                    <span id="err" style="color:red"></span>
+                    <div class="layui-input-block">
+                        <div style="width:700px;position: relative;z-index: 0;" id="editor">
+                        </div>
+                        <textarea id="bzname" name="bzname" placeholder="请输入内容" class="layui-textarea hide"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn saveform" type="button" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% include footer.html %>
+<script>
+
+</script>

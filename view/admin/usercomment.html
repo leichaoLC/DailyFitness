@@ -1,6 +1,50 @@
 <% include header.html %>
-
+<div class="main">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col>
+            <col width="200">
+            <col width="200">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>回复者</th>
+                <th>回复内容</th>
+                <th>回复时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let d of reslut)
+                {%>
+                <tr>
+                    <td><%=d.commentator%></td>
+                    <td><%=d.commen%></td>
+                    <td><%=new Date(d.daten).toLocaleString()%></td>
+                    <td><button value="<%=d.wid%>" class="layui-btn savelocal delcom">删除评论</button></td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+</div>
 <% include footer.html %>
 <script>
-    $('#comment').addClass('layui-this')
+    $('#comment').addClass('layui-this');
+    $('.delcom').click(function () {
+                if(!confirm("确定删除该评论吗？")){
+                    return;
+                }
+                $.ajax({
+                    url:'/admin/delcom',
+                    data:{wid:$(this).val()},
+                    dataType:'JSON',
+                    type:'POST',
+                    success:function(data){
+                        if(data.r=='delsuccess'){
+                            window.location.reload()
+                        }
+                    }
+                })
+            })
 </script>

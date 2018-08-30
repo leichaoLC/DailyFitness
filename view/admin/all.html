@@ -4,6 +4,7 @@
                 <%for(let r of reslut)
                 {%>
             <div class="card">
+                <a href="/admin/xgcourse?cid=<%=r.cid%>">
                 <img width="300px" height="250px" src="<%=r.imgpath%>">
                 <div>
                     <p style="font-size:18px">
@@ -19,6 +20,7 @@
                         锻炼部位：<%=r.position%>
                     </span>
                 </div>
+            </a>
             </div>
             <%}%>
         </div>       

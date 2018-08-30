@@ -1,6 +1,55 @@
 <% include header.html %>
+<div class="main">
+        <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col>
+                    <col width="200">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>注册时间</th>
+                        <th>最后一次登录时间</th>
+                        <th>登录IP</th>
+                        <th>用户状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(let r of reslut)
+                        {%>
+                        <tr>
+                            <td><%=r.username%></td>
+                            <td><%=new Date(r.regtime).toLocaleString()%></td>
+                            <td><%=new Date(r.logintime).toLocaleString()%></td>
+                            <td><%=r.ip%></td>
+                            <td><%=r.statu? '禁止':'正常'%></td>
+                            <td><button value="<%=r.uid%>" class="layui-btn savelocal usercon"><%=r.statu? '解除':'禁止'%></button><button value="<%=r.statu%>" class="hide"></button></td>
+                        </tr>
+                        <%}%>
+                </tbody>
+            </table>
+</div>
 
 <% include footer.html %>
 <script>
     $('#control').addClass('layui-this')
+    $('.usercon').click(function(){
+        if(!confirm("确认操作")){
+                    return;
+                }
+                $.ajax({
+                    url:'/admin/usercon',
+                    data:{uid:$(this).val(),statu:$(this).next().val()},
+                    dataType:'JSON',
+                    type:'POST',
+                    success:function(data){
+                        if(data.r=='success'){
+                            window.location.reload()
+                        }
+                    }
+                })
+    })
 </script>

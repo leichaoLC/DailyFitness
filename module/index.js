@@ -1,5 +1,8 @@
 module.exports=function(){
     let router=express.Router();
+    router.get('/',(req,res)=>{
+        res.render('index')
+    })
     router.get('/coursedetails',(req,res)=>{
         let sql=` select * from course where cid=? limit 1 `;
         mydb.query(sql,req.query.cid,(err,result)=>{
