@@ -49,8 +49,7 @@ module.exports=function(){
                             if(r[1]){
                                 result[i].imgpath = r[1];
                             }             
-                        }    
-                             
+                        }                     
                     } 
                     cb(null, result);        
                 })
@@ -74,6 +73,16 @@ module.exports=function(){
         mydb.query(sql,req.query.cid,(err,result)=>{
             res.json({r:result[0]})
         });
+    });
+    router.get('/code',(req,res)=>{
+        let sql=` INSERT INTO code(code) VALUES(?) `;
+        mydb.query(sql,req.query.code,(err,result)=>{
+            if(err){
+                res.json({r:'dberr'})
+            }else{
+                res.json({r:'sucess'})
+            }
+        })
     });
     return router;
 }
