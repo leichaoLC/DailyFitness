@@ -32,25 +32,23 @@
                     <div class="two nav-header">
                         <ul>
                             <li>
-                                <a href="">首页</a>
+                                <a href="/index">首页</a>
                             </li>
                             <li>
-                                <a href="">精选课程</a>
+                                <a href="/index/courseoutline">所有课程</a>
+                            </li>
+
+                            <li>
+                                <a href="/index/find">发现</a>
                             </li>
                             <li>
-                                <a href="">饮食推荐</a>
+                                <a href="/user">个人中心</a>
                             </li>
                             <li>
-                                <a href="">发现</a>
+                                <a href="/login/register">注册</a>
                             </li>
                             <li>
-                                <a href="">个人中心</a>
-                            </li>
-                            <li>
-                                <a href="">注册</a>
-                            </li>
-                            <li>
-                                <a href="">登录</a>
+                                <a href="/login">登录</a>
                             </li>
                         </ul>
                     </div>
@@ -129,7 +127,7 @@
                 <div class="index-one-details animation-time" id="index-one-details-two">
                     <div class="index-details index-two-introduce-one">
                         <div class="index-two-eggimg">
-                            <img src="images/egg.png" alt="">
+                            <img src="/images/egg.png" alt="">
                         </div>
                         <div class="index-two-egg-p">
                             <p>减肥人群：适量食用</p>
@@ -189,7 +187,7 @@
 
                     <div class="index-details index-two-introduce-three">
                         <div class="index-two-eggimg">
-                            <img src="images/egg.png" alt="">
+                            <img src="/images/egg.png" alt="">
                         </div>
                         <div class="index-two-egg-p">
                             <p>减肥人群：适量食用</p>
@@ -223,14 +221,11 @@
                     <p class="plan-p-two">拍照记录每一天的变化，分享好友相互勉励，在每日健身不再是孤独的坚持。</p>
                 </div>
                 <div class="index-one-details animation-time" id="index-one-details-three">
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
-                    <div class="index-three-share"></div>
+                        <%for(let r of result){%>                
+                    <div class="index-three-share">
+                        <img width="100%" height="100%" src="<%=r.mainpic%>" alt="">
+                    </div>
+                    <%}%>
                 </div>
             </div>
             <!-- 内容区域4

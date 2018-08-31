@@ -27,25 +27,23 @@
                     <div class="two nav-header">
                         <ul>
                             <li>
-                                <a href="">首页</a>
+                                <a href="/index">首页</a>
                             </li>
                             <li>
-                                <a href="">精选课程</a>
+                                <a href="/index/courseoutline">所有课程</a>
+                            </li>
+
+                            <li>
+                                <a href="/index/find">发现</a>
                             </li>
                             <li>
-                                <a href="">饮食推荐</a>
+                                <a href="/user">个人中心</a>
                             </li>
                             <li>
-                                <a href="">发现</a>
+                                <a href="/login/register">注册</a>
                             </li>
                             <li>
-                                <a href="">个人中心</a>
-                            </li>
-                            <li>
-                                <a href="">注册</a>
-                            </li>
-                            <li>
-                                <a href="">登录</a>
+                                <a href="/login">登录</a>
                             </li>
                         </ul>
                     </div>
@@ -163,6 +161,9 @@
                     data: Qs.stringify(this.formLabelAlign)
                 }).then(response => {
                     // window.location.reload();
+                    if(response.data.r=="sucess"){
+                        window.location.href="/user"
+                    }
                     console.log("sucess...");
                 }).catch(response => {
                     console.log("fail...")

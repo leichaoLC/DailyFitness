@@ -4,6 +4,10 @@
                 <%for(let r of reslut)
                 {%>
             <div class="card">
+                    <button value="<%=r.cid%>" class="layui-btn layui-btn-primary layui-btn-sm delcourse">
+                            <i class="layui-icon">&#xe640;</i>
+                    </button>
+                <a href="/admin/xgcourse?cid=<%=r.cid%>">
                 <img width="300px" height="250px" src="<%=r.imgpath%>">
                 <div>
                     <p style="font-size:18px">
@@ -19,6 +23,7 @@
                         锻炼部位：<%=r.position%>
                     </span>
                 </div>
+            </a>
             </div>
             <%}%>
         </div>       
@@ -26,4 +31,20 @@
     <% include footer.html %>
         <script>
             $('#all').addClass('layui-this')
+            $('.delcourse').click(function () {
+                if(!confirm("确定删除该课程吗？")){
+                    return;
+                }
+                $.ajax({
+                    url:'/admin/delcourse',
+                    data:{cid:$(this).val()},
+                    dataType:'JSON',
+                    type:'POST',
+                    success:function(data){
+                        if(data.r=='delsuccess'){
+                            window.location.reload()
+                        }
+                    }
+                })
+            })
         </script>

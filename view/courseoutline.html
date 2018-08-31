@@ -27,25 +27,23 @@
                     <div class="two nav-header">
                         <ul>
                             <li>
-                                <a href="">首页</a>
+                                <a href="/index">首页</a>
                             </li>
                             <li>
-                                <a href="">精选课程</a>
+                                <a href="/index/courseoutline">所有课程</a>
+                            </li>
+
+                            <li>
+                                <a href="/index/find">发现</a>
                             </li>
                             <li>
-                                <a href="">饮食推荐</a>
+                                <a href="/user">个人中心</a>
                             </li>
                             <li>
-                                <a href="">发现</a>
+                                <a href="/login/register">注册</a>
                             </li>
                             <li>
-                                <a href="">个人中心</a>
-                            </li>
-                            <li>
-                                <a href="">注册</a>
-                            </li>
-                            <li>
-                                <a href="">登录</a>
+                                <a href="/login">登录</a>
                             </li>
                         </ul>
                     </div>
@@ -63,14 +61,10 @@
             </div>
             <!-- 分类 -->
             <div class="classify-equipment">
-                <p>全部</p>
-                <%for(let q of qclist){%>
-                    <div class="detailed-equipment">
-                        <a href="javascript:;" @click="qcname('<%=q.name%>')">
-                            <%=q.name%>
-                        </a>
-                    </div>
-                    <%}%>
+                    <a href="javascript:;" @click="all">
+                            全部
+                    </a>
+
             </div>
             <div class="classify-equipment">
                 <p>器材</p>
@@ -168,6 +162,17 @@
             }
         },
         methods: {
+            all:function(){
+                this.fenye.name = ''
+                this.fenye.bname = ''
+                this.fenye.mname = ''
+                this.fenye.action = ''
+                this.fenye.currentPage= 1
+                this.fenye.allcount=1
+                this.qc.name=''
+                this.bw.bname=''
+                this.md.mname=''
+            },
             qcname: function (e) {
                 this.qc.name = e;
                 this.fenye.name = e;
