@@ -199,6 +199,23 @@ module.exports=function(){
                 res.json({r:'sucess'})
             }
         })
+    });
+    router.post('/delcourse',(req,res)=>{
+        let sql=` DELETE  FROM  course  WHERE  cid=? `
+        console.log(req.body)
+        mydb.query(sql,req.body.cid,(err,result)=>{
+            if(err){
+                res.json({r:'delerr'})
+                console.log(err)
+            }else{
+                res.json({r:'delsuccess'})
+            }
+            
+        })
+    });
+    router.get('/adminout',(req,res)=>{
+        delete req.session.name;
+        res.redirect('/login');
     })
     return router;
 }

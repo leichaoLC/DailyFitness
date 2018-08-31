@@ -1,7 +1,12 @@
 module.exports=function(){
     let router=express.Router();
     router.get('/',(req,res)=>{
-        res.render('index')
+        let sql=` select * from find ORDER BY fid DESC limit 8  `
+        mydb.query(sql,(err,result)=>{
+            console.log(result)
+            res.render('index',{result:result})
+        })
+       
     })
     router.get('/coursedetails',(req,res)=>{
         let sql=` select * from course where cid=? limit 1 `;
@@ -102,7 +107,7 @@ module.exports=function(){
     });
 
     router.get('/find',(req,res)=>{
-        let sql=` select * from find `;
+        let sql=` select * from find ORDER BY fid DESC `;
         mydb.query(sql,(err,result)=>{
             res.render('find',{result:result})
         })    
@@ -195,13 +200,13 @@ module.exports=function(){
             sql+=` collnum+1 `
             let sql1=` INSERT INTO collection(uid,cid,times) VALUES(?,?,?) `;
             mydb.query(sql1,[req.session.uid,req.body.cid,new Date().toLocaleString()],(err,result)=>{
-            
+            res.json({r:'ok'})
             })
         }else{
             sql+= ` collnum-1 `
             let sql1=` DELETE  FROM  collection  WHERE  uid=? and cid=? `;
             mydb.query(sql1,[req.session.uid,req.body.cid],(err,result)=>{
-            
+                res.json({r:'del'})
             })
         }
         sql+=` WHERE cid = ? LIMIT 1 `

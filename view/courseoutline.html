@@ -61,14 +61,10 @@
             </div>
             <!-- 分类 -->
             <div class="classify-equipment">
-                <p>全部</p>
-                <%for(let q of qclist){%>
-                    <div class="detailed-equipment">
-                        <a href="javascript:;" @click="qcname('<%=q.name%>')">
-                            <%=q.name%>
-                        </a>
-                    </div>
-                    <%}%>
+                    <a href="javascript:;" @click="all">
+                            全部
+                    </a>
+
             </div>
             <div class="classify-equipment">
                 <p>器材</p>
@@ -166,6 +162,17 @@
             }
         },
         methods: {
+            all:function(){
+                this.fenye.name = ''
+                this.fenye.bname = ''
+                this.fenye.mname = ''
+                this.fenye.action = ''
+                this.fenye.currentPage= 1
+                this.fenye.allcount=1
+                this.qc.name=''
+                this.bw.bname=''
+                this.md.mname=''
+            },
             qcname: function (e) {
                 this.qc.name = e;
                 this.fenye.name = e;

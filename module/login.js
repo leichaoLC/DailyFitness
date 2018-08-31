@@ -3,6 +3,7 @@ module.exports=function(){
     var url;
     router.get('/',(req,res)=>{
         url=req.query.url
+        console.log(url)
         res.render('login')
     });
     router.post('/',(req,res)=>{
@@ -16,7 +17,7 @@ module.exports=function(){
             })
             return;
         }
-        let sql ='select * from user where username=? AND statu=0 limit 1';
+        let sql ='select * from user where username=? limit 1';
         mydb.query(sql, req.body.username, (err, result)=>{
             if(err){
                 res.json({r:'db_error'});
@@ -51,8 +52,7 @@ module.exports=function(){
                     console.log(err);
                 }else{
                     if(url){
-                        res.json({r:"url",
-                    url:url});
+                        res.json({r:"url",url:url});
                     }else{
                         res.json({r:'ok'});
                     }
