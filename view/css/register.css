@@ -91,7 +91,12 @@ source{
 }
 
 .el-input__inner{
-    background-color: rgba(255,255,255,0.5)
+    background-color: rgba(255,255,255,0.5);
+    border-color: rgb(148, 148, 148)
+}
+
+.el-form-item.is-required .el-form-item__label:before{
+    content: '';
 }
 
 .flip {
@@ -138,6 +143,11 @@ source{
     text-align: center;
     letter-spacing: 0.4em;
   }
+
+  .el-form-item.is-success .el-input__inner{
+    border-color: rgb(148, 148, 148);
+  }
+
   .flip span .front {
     background-color: #222;
     color: #fff;

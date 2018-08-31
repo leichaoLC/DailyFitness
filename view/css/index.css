@@ -6,23 +6,27 @@
 /* 背景图填充 */
 .index-bg{
     height: 1000px;
-    /* width: 1920px; */
-    position: absolute;
+    width: 100%;
+    position: fixed;
+    top: 0;
     background-image: url(../images/index.jpg);
     background-position: center;
-    /* background-size:contain; */
     z-index: -1;
-    /* display: flex; */
-    justify-content: center;
-    align-items: center;
 }
 
 .index-headline{
-    width: 1200px;
-    height: 400px;
-    margin: 0 360px;
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    margin: 0 auto;
+    margin-top: 400px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     /* background-color: aqua; */
     text-align: center;
+    /* line-height: 1000px */
     
 }
 
