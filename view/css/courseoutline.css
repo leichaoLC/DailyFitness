@@ -74,6 +74,11 @@ input::-webkit-input-placeholder {
     color: rgb(70, 70, 70)
 }
 
+.classify-equipment a{
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+}
+
 .classify-equipment p{
     /* background-color: aqua; */
 }
